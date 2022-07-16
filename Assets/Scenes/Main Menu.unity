@@ -209,6 +209,7 @@ GameObject:
   - component: {fileID: 315540613}
   - component: {fileID: 315540616}
   - component: {fileID: 315540617}
+  - component: {fileID: 315540618}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -331,6 +332,22 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: 0}
   BasisObject: {fileID: 2141509831}
   camera: {fileID: 315540614}
+--- !u!114 &315540618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 315540612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e605dd2e26a54a109345db23bc2c635, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MovingObject: {fileID: 828435302}
+  offset: {x: 0, y: 0, z: 0}
+  BasisObject: {fileID: 2141509831}
+  camera: {fileID: 315540614}
 --- !u!1 &328045358
 GameObject:
   m_ObjectHideFlags: 0
@@ -413,7 +430,7 @@ ParticleSystemRenderer:
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
-  m_SortMode: 1
+  m_SortMode: 0
   m_MinParticleSize: 0
   m_MaxParticleSize: 0.5
   m_CameraVelocityScale: 0
@@ -422,7 +439,7 @@ ParticleSystemRenderer:
   m_SortingFudge: 0
   m_NormalDirection: 1
   m_ShadowBias: 0
-  m_RenderAlignment: 0
+  m_RenderAlignment: 1
   m_Pivot: {x: 0, y: 0, z: 0}
   m_Flip: {x: 0, y: 0, z: 0}
   m_UseCustomVertexStreams: 0
@@ -1009,7 +1026,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 1000
+    maxNumParticles: 1500
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
     rotation3D: 0
@@ -1077,7 +1094,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 1081.3, y: 633.5, z: 1}
+    m_Scale: {x: 1536.8, y: 1117, z: 49.8}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
