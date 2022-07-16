@@ -11,7 +11,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - UI Particle
   - 
   - 
   - 
@@ -43,4 +43,7 @@ TagManager:
     locked: 0
   - name: UI Particles
     uniqueID: 3463186223
+    locked: 0
+  - name: Galaxy Glow
+    uniqueID: 4258035719
     locked: 0
