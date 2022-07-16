@@ -5,7 +5,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public Camera camera;
-    [SerializeField]public static GameManager instance;
+    public Player player;
+    public static GameManager instance;
 
 
     [Header("Dice Resources")]
