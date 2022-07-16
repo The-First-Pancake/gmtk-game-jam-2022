@@ -55,7 +55,7 @@ public class DiceRoller : MonoBehaviour
             diff = followSpeed*diff;
             rb.velocity = diff;
         }
-        rb.AddForceAtPosition(Shake(), Shake());
+        rb.AddForceAtPosition(Shake(), diff.magnitude*Shake());
     }
 
     Vector3 Shake()
