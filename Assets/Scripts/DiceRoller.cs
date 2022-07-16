@@ -25,8 +25,7 @@ public class DiceRoller : MonoBehaviour
         }
     }
 
-    bool CheckPickup()
-    {
+    bool CheckPickup() {
         if (pickedUp) {
             if (Input.GetMouseButtonDown(1)) {
                 ThrowDice();
@@ -34,16 +33,14 @@ public class DiceRoller : MonoBehaviour
             }
         } else {
             if (Input.GetMouseButtonDown(0)) {
-                RaycastHit raycastHit;
-                Ray ray = camera.ScreenPointToRay(new Vector3(Input.mousePosition.x, Input.mousePosition.y, camera.transform.position.y));
-                if (Physics.Raycast(ray, out raycastHit, 100f))
-                {
-                    if (raycastHit.transform == transform)
-                    {
+                Ray ray = camera.ScreenPointToRay(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -camera.transform.position.y));
+                RaycastHit[] raycastHits = Physics.RaycastAll(ray, 100f);
+                foreach (RaycastHit raycastHit in raycastHits) {
+                    if (raycastHit.transform == transform) {
                         pickedUp = true;
                     }
                 }
-            }
+             }
         }
         return pickedUp;
     }
@@ -54,12 +51,11 @@ public class DiceRoller : MonoBehaviour
         adjustedMouse.y = floatToHeight;
         Vector3 diff = adjustedMouse - transform.position;
 
-        if (diff.magnitude > 2) {
-            diff = followSpeed*diff + Shake();
+        if (diff.magnitude > 1.5) {
+            diff = followSpeed*diff;
             rb.velocity = diff;
         }
-        
-        // rb.AddForceAtPosition(Shake(), Shake());
+        rb.AddForceAtPosition(Shake(), Shake());
     }
 
     Vector3 Shake()
