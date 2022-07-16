@@ -13050,8 +13050,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ba29985444873cc6a882ae4e3cd3483, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 5
-  health: 5
+  maxHealth: 10
+  health: 10
   dicePool: {fileID: 0}
 --- !u!1 &7092283794899147862
 GameObject:

@@ -5,6 +5,7 @@ using UnityEngine;
 public class DiceRoller : MonoBehaviour
 {
     public enum DiceState {
+        DISABLED,
         SETTLED,
         PICKED_UP,
         ROLLING,
@@ -17,7 +18,7 @@ public class DiceRoller : MonoBehaviour
 
     private Rigidbody rb;
     private Camera camera;
-    private DiceState diceState = DiceState.ROLLING;
+    private DiceState diceState = DiceState.DISABLED;
     private float debouncedVelocity = 0;
     private int debounceCounter = 0;
     
@@ -109,5 +110,13 @@ public class DiceRoller : MonoBehaviour
     void ThrowDice()
     {
         rb.AddForceAtPosition(Shake(), Shake());
+    }
+
+    public void SetEnabled(bool enabled) {
+        if (enabled) {
+            diceState = DiceState.PICKED_UP;
+        } else {
+            diceState = DiceState.DISABLED;
+        }
     }
 }
