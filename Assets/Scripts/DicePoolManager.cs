@@ -11,11 +11,13 @@ public class PoolResults {
 public class DicePoolManager : MonoBehaviour
 {
     public List<Dice> diceInPool;
+    public List<DiceRoller> diceRollers;
     public PoolResults poolResults;
     // Start is called before the first frame update
     void Start()
     {
         GetComponentsInChildren<Dice>(diceInPool);
+        GetComponentsInChildren<DiceRoller>(diceRollers);
     }
 
     // Update is called once per frame

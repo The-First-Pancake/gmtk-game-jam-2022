@@ -5,6 +5,7 @@ using UnityEngine;
 public class DiceRoller : MonoBehaviour
 {
     public enum DiceState {
+        DISABLED,
         SETTLED,
         PICKED_UP,
         ROLLING,
