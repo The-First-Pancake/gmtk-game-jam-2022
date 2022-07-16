@@ -7,7 +7,6 @@ public class GameManager : MonoBehaviour
     public Camera camera;
     public Player player;
     public static GameManager instance;
-    [SerializeField]public static GameManager instance;
 
 
     [Header("Dice Resources")]

@@ -5,7 +5,7 @@ using UnityEngine;
 
 [Serializable]
 public class PoolResults {
-    public int [] pips = new int[Enum.GetNames(typeof(Pip.PipType)).Length];
+    public int [] pips = new int[Enum.GetNames(typeof(PipType)).Length];
 }
 
 public class DicePoolManager : MonoBehaviour
@@ -40,7 +40,7 @@ public class DicePoolManager : MonoBehaviour
         foreach (Dice die in diceInPool) {
             Face upFace = die.getUpFace();
             if (upFace != null) {
-                foreach (Pip pip in upFace.pips) {
+                foreach (Pip pip in upFace) {
                     poolResults.pips[((int)pip.piptype)] += 1;
                 }
             }
