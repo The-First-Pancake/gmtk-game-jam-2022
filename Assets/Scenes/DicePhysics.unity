@@ -141,7 +141,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f54dfd94d110782fa999769b1e1916e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 1954948526}
   followSpeed: 7.5
   floatToHeight: 5
   shakeFactor: 5
@@ -2043,7 +2042,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f54dfd94d110782fa999769b1e1916e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 0}
   followSpeed: 7.5
   floatToHeight: 5
   shakeFactor: 5
@@ -2717,36 +2715,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PixelShader
-      objectReference: {fileID: 0}
-    - target: {fileID: 463297899078631452, guid: 476ed374b798a25eaa71f2832f3f09cc,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 463297899078631452, guid: 476ed374b798a25eaa71f2832f3f09cc,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 463297899078631452, guid: 476ed374b798a25eaa71f2832f3f09cc,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 463297899209018948, guid: 476ed374b798a25eaa71f2832f3f09cc,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 463297899209018948, guid: 476ed374b798a25eaa71f2832f3f09cc,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 463297899209018948, guid: 476ed374b798a25eaa71f2832f3f09cc,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 476ed374b798a25eaa71f2832f3f09cc, type: 3}

@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class DiceRoller : MonoBehaviour
 {
-    public Camera camera;
     public float followSpeed;
     public float floatToHeight;
     public float shakeFactor;
 
     private Rigidbody rb;
+    private Camera camera;
     private bool pickedUp = false;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        camera = GameManager.instance.camera;
     }
 
     // Update is called once per frame
