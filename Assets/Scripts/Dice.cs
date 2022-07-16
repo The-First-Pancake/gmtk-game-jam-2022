@@ -28,9 +28,9 @@ public class Dice : MonoBehaviour
         diceSizePrefabs dicePrefabs = dicePrefabsBySize.Find(x => x.size == this.dieSize);
         if(dicePrefabs == null) { Debug.LogWarning("Tried to generate die of size " + this.dieSize + ". Could not find prefabs of that size"); return;}
 
-        GameObject newDiceObject = Instantiate(dicePrefabs.shapePrefab, transform);
+        diceBody = Instantiate(dicePrefabs.shapePrefab, transform);
         sockets.Clear();
-        foreach(Transform child in newDiceObject.transform)
+        foreach(Transform child in diceBody.transform)
         {
             if (child.name.ToLower().Contains("socket"))
             {
@@ -43,24 +43,22 @@ public class Dice : MonoBehaviour
         int i = 0;
         foreach(Face face in faces)
         {
+            //if (face.socket) { face.generateFace(face.socket, dicePrefabs.facePrefab); continue;}
             face.generateFace(sockets[i], dicePrefabs.facePrefab);
             i++;
         }
     }
     public Face? getUpFace()
     {
-        int i = 0;
         float bestDot = 0;
-        int bestSocketIndex = 0;
+        Transform bestSocket = null;
         foreach (Transform socket in sockets)
         {
             float dot = Vector3.Dot(-socket.forward, Vector3.up); //close to 1 if parallel, clost to -1 if antiparallel
-            if (dot > bestDot) { bestSocketIndex = i; bestDot = dot; }
-            i++;
+            if (dot > bestDot) { bestSocket = socket ; bestDot = dot; }
         }
-        Debug.Log(bestSocketIndex);
-        if (faces.Count > bestSocketIndex) { return faces[bestSocketIndex]; }
-        return null;
+        Debug.Log(bestSocket);
+        return faces.Find(x => x.socket == bestSocket);
     }
 }
 
@@ -70,7 +68,7 @@ public class Face
     public Dice dice; //TODO make this plug in on construct
     public List<Pip> pips;
     public GameObject gameObject;
-    private Transform socket;
+    public Transform socket;
 
 
     public void generateFace(Transform socket, GameObject prefab)
