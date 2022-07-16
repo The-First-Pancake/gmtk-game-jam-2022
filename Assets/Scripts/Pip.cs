@@ -7,14 +7,15 @@ public class Pip : ScriptableObject
 {
     public Sprite sprite;
     public Color color;
-    public PipType piptype;
-    public enum PipType
-    {
-        Bullet,
-        Gun,
-        Energy,
-        Fire,
-        Evade,
-        Search
-    }
+    public PipType type;
+
+}
+public enum PipType
+{
+    Bullet,
+    Gun,
+    Energy,
+    Fire,
+    Evade,
+    Search
 }
