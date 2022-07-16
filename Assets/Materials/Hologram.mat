@@ -94,7 +94,7 @@ Material:
     - _DstBlend: 0
     - _EnvironmentReflections: 1
     - _GlitchIntensity: 0.0171
-    - _GlitchSpeed: 16
+    - _GlitchSpeed: 18
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
@@ -105,7 +105,7 @@ Material:
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _Scale: 0.5
-    - _ScrollSpeedV: 5
+    - _ScrollSpeedV: 3.18
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
