@@ -40,8 +40,8 @@ public class DicePoolManager : MonoBehaviour
         foreach (Dice die in diceInPool) {
             Face upFace = die.getUpFace();
             if (upFace != null) {
-                foreach (Pip pip in upFace) {
-                    poolResults.pips[((int)pip.piptype)] += 1;
+                foreach (Pip pip in upFace.pips) {
+                    poolResults.pips[((int)pip.type)] += 1;
                 }
             }
         }
