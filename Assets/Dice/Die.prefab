@@ -45,29 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dieSize: 6
-  dicePrefabsBySize:
-  - size: 6
-    shapePrefab: {fileID: 5356086294458568833, guid: bdcc12654b81e3c4295f04edbb31366c,
-      type: 3}
-    facePrefab: {fileID: 7347531000047505787, guid: 7da322b32cee86743ba76333fd8438b6,
-      type: 3}
-  faces:
-  - dice: {fileID: 0}
-    pips:
-    - {fileID: 11400000, guid: fbda1e38a892ba74d82e7cd4382e0876, type: 2}
-    - {fileID: 11400000, guid: fbda1e38a892ba74d82e7cd4382e0876, type: 2}
-    gameObject: {fileID: 0}
-    socket: {fileID: 0}
-  - dice: {fileID: 0}
-    pips:
-    - {fileID: 11400000, guid: 9bb202a29e4f4954983893f1f1f316ce, type: 2}
-    - {fileID: 11400000, guid: 9bb202a29e4f4954983893f1f1f316ce, type: 2}
-    gameObject: {fileID: 0}
-    socket: {fileID: 0}
-  - dice: {fileID: 0}
-    pips:
-    - {fileID: 11400000, guid: 03ab073d9f9fbfb43b513c22cd060e0b, type: 2}
-    - {fileID: 11400000, guid: 4af13ce21b7c4524a92b6fcc56aef576, type: 2}
-    gameObject: {fileID: 0}
-    socket: {fileID: 0}
+  faces: []
   diceBody: {fileID: 0}

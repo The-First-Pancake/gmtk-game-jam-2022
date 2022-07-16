@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7876994fcccc7294bba20a4e7637fa8e, type: 3}
-  m_Name: Search
+  m_Name: Energy
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 82fce7fdd76e3244996eca1b1934dcba, type: 3}
-  color: {r: 0, g: 0.5348247, b: 0.7169812, a: 1}
-  piptype: 5
+  sprite: {fileID: 21300000, guid: a34b5ad0cfca0fc4bbff794ddc54783b, type: 3}
+  color: {r: 0.88615304, g: 0.8867924, b: 0, a: 1}
+  type: 2
