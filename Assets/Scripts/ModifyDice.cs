@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ModifyDice : MonoBehaviour
 {
-    public Transform diceSelectionAreaAnchor;
+    private Transform diceZoomPoint;
 
     float diceSpacing = 2.5f;
     float dicerotateSpeed = 60;
@@ -13,6 +13,7 @@ public class ModifyDice : MonoBehaviour
 
     void Start()
     {
+        diceZoomPoint = Camera.main.transform.Find("DiceZoomPoint");
         StartCoroutine(SelectDiceSocket());
     }
 
@@ -36,7 +37,7 @@ public class ModifyDice : MonoBehaviour
         for (int i = 0; i < diceCount; i++)
         {
             float newX = startX + diceSpacing * i;
-            dicePoolManager.diceInPool[i].transform.position = diceSelectionAreaAnchor.position + new Vector3(newX, 0, 0);
+            dicePoolManager.diceInPool[i].transform.position = diceZoomPoint.position + new Vector3(newX, 0, 0);
         }
 
 
