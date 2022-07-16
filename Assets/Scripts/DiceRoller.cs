@@ -13,10 +13,14 @@ public class DiceRoller : MonoBehaviour
     public float followSpeed;
     public float floatToHeight;
     public float shakeFactor;
+    public int averagedOver = 20;
 
     private Rigidbody rb;
     private Camera camera;
     private DiceState diceState = DiceState.ROLLING;
+    private float debouncedVelocity = 0;
+    private int debounceCounter = 0;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -72,7 +76,14 @@ public class DiceRoller : MonoBehaviour
     }
 
     bool CheckSettled() {
-        return (rb.velocity.magnitude < 0.001);
+        debounceCounter = (debounceCounter + 1) % averagedOver;
+        debouncedVelocity += rb.velocity.magnitude;
+        if (debounceCounter == (averagedOver - 1)) {
+            float averagedVelocity = debouncedVelocity / averagedOver;
+            debouncedVelocity = 0;
+            return averagedVelocity <= 0.0000001;
+        }
+        return false;
     }
 
     void FollowMouse()
@@ -97,6 +108,6 @@ public class DiceRoller : MonoBehaviour
 
     void ThrowDice()
     {
-
+        rb.AddForceAtPosition(Shake(), Shake());
     }
 }
