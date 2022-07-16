@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class DiceRoller : MonoBehaviour
 {
+    public enum DiceState {
+        SETTLED,
+        PICKED_UP,
+        ROLLING,
+    }
+
     public float followSpeed;
     public float floatToHeight;
     public float shakeFactor;
 
     private Rigidbody rb;
     private Camera camera;
-    private bool pickedUp = false;
+    private DiceState diceState = DiceState.ROLLING;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,29 +27,52 @@ public class DiceRoller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        switch (diceState)
+        {
+            case DiceState.PICKED_UP:
+                FollowMouse();
+                if (CheckDrop()) {
+                    ThrowDice();
+                    diceState = DiceState.ROLLING;
+                }
+                break;
+            case DiceState.ROLLING:
+                if (CheckSettled()) {
+                    rb.isKinematic = true;
+                    diceState = DiceState.SETTLED;
+                }
+                break;
+            case DiceState.SETTLED:
+                if (CheckPickup()) {
+                    rb.isKinematic = false;
+                    diceState = DiceState.PICKED_UP;
+                }
+                break;
+        }
         if (CheckPickup()) {
             FollowMouse();
         }
     }
 
+    bool CheckDrop() {
+        return Input.GetMouseButtonDown(1);
+    }
+
     bool CheckPickup() {
-        if (pickedUp) {
-            if (Input.GetMouseButtonDown(1)) {
-                ThrowDice();
-                pickedUp = false;
-            }
-        } else {
-            if (Input.GetMouseButtonDown(0)) {
-                Ray ray = camera.ScreenPointToRay(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -camera.transform.position.y));
-                RaycastHit[] raycastHits = Physics.RaycastAll(ray, 100f);
-                foreach (RaycastHit raycastHit in raycastHits) {
-                    if (raycastHit.transform == transform) {
-                        pickedUp = true;
-                    }
+        if (Input.GetMouseButtonDown(0)) {
+            Ray ray = camera.ScreenPointToRay(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -camera.transform.position.y));
+            RaycastHit[] raycastHits = Physics.RaycastAll(ray, 100f);
+            foreach (RaycastHit raycastHit in raycastHits) {
+                if (raycastHit.transform == transform) {
+                    return true;
                 }
-             }
+            }
         }
-        return pickedUp;
+        return false;
+    }
+
+    bool CheckSettled() {
+        return (rb.velocity.magnitude < 0.001);
     }
 
     void FollowMouse()
