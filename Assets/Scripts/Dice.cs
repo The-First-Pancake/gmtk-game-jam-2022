@@ -22,7 +22,7 @@ public class Dice : MonoBehaviour
     [ContextMenu("Generate Model")]
     public void generateDie()
     {
-        if (diceBody) { Destroy(diceBody); } //if already exists, destro the old one
+        if (diceBody) { DestroyImmediate(diceBody); } //if already exists, destro the old one
 
 
         diceSizePrefabs dicePrefabs = dicePrefabsBySize.Find(x => x.size == this.dieSize);
@@ -43,7 +43,6 @@ public class Dice : MonoBehaviour
         int i = 0;
         foreach(Face face in faces)
         {
-            //if (face.socket) { face.generateFace(face.socket, dicePrefabs.facePrefab); continue;}
             face.generateFace(sockets[i], dicePrefabs.facePrefab);
             i++;
         }
@@ -80,8 +79,9 @@ public class Face
     }
     public void addPips()
     {
-        GameObject pipPrefab = (GameObject)Resources.Load("PipPrefab");
-        Transform pipLayoutGroup = gameObject.transform.Find("PipLayout");
+        Debug.Log(Resources.Load("Pips/PipPrefab"));
+        GameObject pipPrefab = (GameObject)Resources.Load("Pips/PipPrefab");
+        Transform pipLayoutGroup = gameObject.transform.Find("Canvas").Find("PipLayout");
         foreach (Transform child in pipLayoutGroup)
         {
             GameObject.Destroy(child.gameObject);
