@@ -37,24 +37,24 @@ public class DiceRoller : MonoBehaviour
                 FollowMouse();
                 if (CheckDrop()) {
                     ThrowDice();
+                    Debug.Log("Entered Rolling");
                     diceState = DiceState.ROLLING;
                 }
                 break;
             case DiceState.ROLLING:
                 if (CheckSettled()) {
                     rb.isKinematic = true;
+                    Debug.Log("Entered Settled");
                     diceState = DiceState.SETTLED;
                 }
                 break;
             case DiceState.SETTLED:
                 if (CheckPickup()) {
                     rb.isKinematic = false;
+                    Debug.Log("Entered Picked Up");
                     diceState = DiceState.PICKED_UP;
                 }
                 break;
-        }
-        if (CheckPickup()) {
-            FollowMouse();
         }
     }
 
@@ -64,7 +64,7 @@ public class DiceRoller : MonoBehaviour
 
     bool CheckPickup() {
         if (Input.GetMouseButtonDown(0)) {
-            Ray ray = camera.ScreenPointToRay(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -camera.transform.position.y));
+            Ray ray = camera.ScreenPointToRay(Input.mousePosition);
             RaycastHit[] raycastHits = Physics.RaycastAll(ray, 100f);
             foreach (RaycastHit raycastHit in raycastHits) {
                 if (raycastHit.transform == transform) {
@@ -81,7 +81,7 @@ public class DiceRoller : MonoBehaviour
         if (debounceCounter == (averagedOver - 1)) {
             float averagedVelocity = debouncedVelocity / averagedOver;
             debouncedVelocity = 0;
-            return averagedVelocity <= 0.0000001;
+            return averagedVelocity <= 0.0001;
         }
         return false;
     }

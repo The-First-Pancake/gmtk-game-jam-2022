@@ -144,6 +144,7 @@ MonoBehaviour:
   followSpeed: 7.5
   floatToHeight: 5
   shakeFactor: 5
+  averagedOver: 20
 --- !u!64 &148543813
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1452,6 +1453,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1300613157}
   m_CullTransparentMesh: 1
+--- !u!20 &1304257922 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 463297899209018949, guid: 476ed374b798a25eaa71f2832f3f09cc,
+    type: 3}
+  m_PrefabInstance: {fileID: 463297901016278455}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1403476057
 GameObject:
   m_ObjectHideFlags: 0
@@ -1686,6 +1693,7 @@ MonoBehaviour:
   followSpeed: 7.5
   floatToHeight: 5
   shakeFactor: 5
+  averagedOver: 20
 --- !u!54 &1777282831
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2143,12 +2151,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!20 &1954948526 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 463297899078631449, guid: 476ed374b798a25eaa71f2832f3f09cc,
-    type: 3}
-  m_PrefabInstance: {fileID: 463297901016278455}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1958085039
 GameObject:
   m_ObjectHideFlags: 0
@@ -2264,6 +2266,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1114624103, guid: 476ed374b798a25eaa71f2832f3f09cc, type: 3}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 1304257922}
     - target: {fileID: 463297898988601547, guid: 476ed374b798a25eaa71f2832f3f09cc,
         type: 3}
       propertyPath: m_RootOrder
@@ -2323,6 +2329,81 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PixelShader
+      objectReference: {fileID: 0}
+    - target: {fileID: 463297899078631449, guid: 476ed374b798a25eaa71f2832f3f09cc,
+        type: 3}
+      propertyPath: orthographic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 463297899078631449, guid: 476ed374b798a25eaa71f2832f3f09cc,
+        type: 3}
+      propertyPath: field of view
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 463297899078631449, guid: 476ed374b798a25eaa71f2832f3f09cc,
+        type: 3}
+      propertyPath: m_FOVAxisMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 463297899078631449, guid: 476ed374b798a25eaa71f2832f3f09cc,
+        type: 3}
+      propertyPath: m_FocalLength
+      value: 20.784609
+      objectReference: {fileID: 0}
+    - target: {fileID: 463297899078631449, guid: 476ed374b798a25eaa71f2832f3f09cc,
+        type: 3}
+      propertyPath: m_projectionMatrixMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 463297899078631452, guid: 476ed374b798a25eaa71f2832f3f09cc,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 463297899078631452, guid: 476ed374b798a25eaa71f2832f3f09cc,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 463297899078631453, guid: 476ed374b798a25eaa71f2832f3f09cc,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 463297899209018948, guid: 476ed374b798a25eaa71f2832f3f09cc,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 463297899209018949, guid: 476ed374b798a25eaa71f2832f3f09cc,
+        type: 3}
+      propertyPath: orthographic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 463297899209018949, guid: 476ed374b798a25eaa71f2832f3f09cc,
+        type: 3}
+      propertyPath: field of view
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 463297899209018949, guid: 476ed374b798a25eaa71f2832f3f09cc,
+        type: 3}
+      propertyPath: m_FOVAxisMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 463297899209018949, guid: 476ed374b798a25eaa71f2832f3f09cc,
+        type: 3}
+      propertyPath: m_FocalLength
+      value: 20.784609
+      objectReference: {fileID: 0}
+    - target: {fileID: 463297899209018949, guid: 476ed374b798a25eaa71f2832f3f09cc,
+        type: 3}
+      propertyPath: m_TargetTexture
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 463297899209018949, guid: 476ed374b798a25eaa71f2832f3f09cc,
+        type: 3}
+      propertyPath: m_projectionMatrixMode
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 476ed374b798a25eaa71f2832f3f09cc, type: 3}
@@ -2405,7 +2486,7 @@ PrefabInstance:
     - target: {fileID: 932562725, guid: fa6bd0bf61d740a37a161ed88a6eadea, type: 3}
       propertyPath: camera
       value: 
-      objectReference: {fileID: 1954948526}
+      objectReference: {fileID: 0}
     - target: {fileID: 2320585105990188970, guid: fa6bd0bf61d740a37a161ed88a6eadea,
         type: 3}
       propertyPath: m_RootOrder
