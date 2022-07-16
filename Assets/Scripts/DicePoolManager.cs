@@ -13,7 +13,7 @@ public class DicePoolManager : MonoBehaviour
     public List<Dice> diceInPool;
     public PoolResults poolResults;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         GetComponentsInChildren<Dice>(diceInPool);
     }

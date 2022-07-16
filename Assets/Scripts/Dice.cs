@@ -7,7 +7,7 @@ public class Dice : MonoBehaviour
 {
     
     public int dieSize = 6;
-    private List<Transform> sockets = new List<Transform>();
+    public List<Transform> sockets = new List<Transform>();
     public List<Face> faces;
     public GameObject diceBody;
     public void Start()
