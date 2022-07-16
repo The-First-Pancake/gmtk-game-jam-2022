@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-enum CombatState {
+public enum CombatState {
     NOT_IN_COMBAT,
     ROLLING,
     RESOLUTION,
@@ -37,11 +37,12 @@ public class CombatManager : MonoBehaviour
         }
     }
 
+    [ContextMenu("Start Combat")]
     void StartCombat() {
         if (state == CombatState.NOT_IN_COMBAT) {
             state = CombatState.ROLLING;
             foreach (DiceRoller diceRoller in GameManager.instance.player.dicePool.diceRollers) {
-                
+                diceRoller.SetEnabled(true);
             }
         }
     }
