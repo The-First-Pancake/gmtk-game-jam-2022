@@ -6,7 +6,7 @@ public class Face : MonoBehaviour
 {
     public FaceType faceType = FaceType.pip;
     public Dice dice; //TODO make this plug in on construct
-    [SerializeField] private List<Pip> pips;
+    public List<Pip> pips;
     public Transform socket;
 
     [Header("Child Objects")]
