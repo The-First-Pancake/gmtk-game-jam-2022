@@ -35,7 +35,7 @@ public class DicePoolManager : MonoBehaviour
         diceInPool.Remove(die.GetComponent<Dice>());
     }
 
-    PoolResults GetPoolResults() {
+    public PoolResults GetPoolResults() {
         PoolResults poolResults = new PoolResults();
         foreach (Dice die in diceInPool) {
             Face upFace = die.getUpFace();

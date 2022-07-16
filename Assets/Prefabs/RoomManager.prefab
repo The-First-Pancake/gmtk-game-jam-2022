@@ -55,7 +55,7 @@ GameObject:
   m_Component:
   - component: {fileID: 463297898988601547}
   m_Layer: 0
-  m_Name: PixelShader
+  m_Name: RoomManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
