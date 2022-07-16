@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera: {fileID: 463297899209018949}
-  pipPrefab: {fileID: 0}
+  pipPrefab: {fileID: 8770532661746544455, guid: 42dcb12a6e55fb54c957e25decbc1baa,
+    type: 3}
   dicePrefabsBySize:
   - size: 6
     bodyPrefab: {fileID: 5356086294458568833, guid: bdcc12654b81e3c4295f04edbb31366c,
