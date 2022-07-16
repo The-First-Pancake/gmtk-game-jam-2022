@@ -45,6 +45,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera: {fileID: 463297899209018949}
+  pipPrefab: {fileID: 0}
+  dicePrefabsBySize:
+  - size: 6
+    bodyPrefab: {fileID: 5356086294458568833, guid: bdcc12654b81e3c4295f04edbb31366c,
+      type: 3}
+    facePrefab: {fileID: 7347531000047505787, guid: 7da322b32cee86743ba76333fd8438b6,
+      type: 3}
+  - size: 8
+    bodyPrefab: {fileID: 3544406501196285610, guid: e75ecd59e875a5b4dbdb6cf65c6e6b7f,
+      type: 3}
+    facePrefab: {fileID: 1987732960217539596, guid: 601a741e7d1201045aecba315117a1be,
+      type: 3}
+  pips:
+  - {fileID: 11400000, guid: fbda1e38a892ba74d82e7cd4382e0876, type: 2}
+  - {fileID: 11400000, guid: ae1a123f3c21f17428ca67e92e30f967, type: 2}
+  - {fileID: 11400000, guid: 9bb202a29e4f4954983893f1f1f316ce, type: 2}
+  - {fileID: 11400000, guid: 0a6cf787e92f0a54faa2ca737e440cc0, type: 2}
+  - {fileID: 11400000, guid: 03ab073d9f9fbfb43b513c22cd060e0b, type: 2}
+  - {fileID: 11400000, guid: 4af13ce21b7c4524a92b6fcc56aef576, type: 2}
 --- !u!1 &463297898988601548
 GameObject:
   m_ObjectHideFlags: 0
