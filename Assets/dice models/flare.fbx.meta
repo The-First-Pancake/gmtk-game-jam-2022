@@ -1,23 +1,8 @@
 fileFormatVersion: 2
-guid: 18f942700076344538442af2c57dd57e
+guid: 3a2f54c6cdd0f4854bac77fb0a1e7e12
 ModelImporter:
   serializedVersion: 21300
-  internalIDToNameTable:
-  - first:
-      74: 4062685969451973848
-    second: isopod|Action
-  - first:
-      74: 9194902981927712615
-    second: isopod|ArmatureAction
-  - first:
-      74: -626535117246229628
-    second: isopod|Shader NodetreeAction
-  - first:
-      74: 561588268747519267
-    second: isopod|Shader NodetreeAction.001
-  - first:
-      74: 4386441309423430141
-    second: isopod|Shader NodetreeAction.002
+  internalIDToNameTable: []
   externalObjects: {}
   materials:
     materialImportMode: 2
