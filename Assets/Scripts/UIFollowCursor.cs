@@ -9,7 +9,10 @@ public class UIFollowCursor : MonoBehaviour
     public RectTransform MovingObject;
     public Vector3 offset;
     public RectTransform BasisObject;
+<<<<<<< HEAD
     public Camera camera;
+=======
+>>>>>>> dev/start-screen
 
     // Update is called once per frame
     void Update()
