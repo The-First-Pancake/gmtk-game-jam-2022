@@ -7,6 +7,9 @@ using TMPro;
 public class ResultsDisplay : MonoBehaviour
 {
     public List<TextMeshProUGUI> childTexts;
+    public TextMeshProUGUI gunCombat;
+    public TextMeshProUGUI lightningCombat;
+    public TextMeshProUGUI fireCombat;
     public GameObject heartPrefab;
     public GameObject healtbar;
     private List<GameObject> hearts = new List<GameObject>();
@@ -31,9 +34,15 @@ public class ResultsDisplay : MonoBehaviour
     void Update()
     {
         PoolResults results = GameManager.instance.player.dicePool.GetPoolResults();
+        gunCombat.text = results.gun_combat.ToString();
+        lightningCombat.text = results.lightning_combat.ToString();
+        fireCombat.text = results.fire_combat.ToString();
+
         for (int i = 0; i < results.pips.Length; i++) {
             childTexts[i].text = results.pips[i].ToString();
         }
+
+
         if (hearts.Count > GameManager.instance.player.health) {
             Destroy(hearts[0]);
             hearts.RemoveAt(0);
