@@ -14,10 +14,7 @@ public class Dice : MonoBehaviour
     {
         generateTestDie();
     }
-    public void Update()
-    {
-        
-    }
+
     [ContextMenu("Generate Model")]
     public void generateDieBody()
     {
@@ -69,7 +66,6 @@ public class Dice : MonoBehaviour
             float dot = Vector3.Dot(-socket.forward, Vector3.up); //close to 1 if parallel, clost to -1 if antiparallel
             if (dot > bestDot) { bestSocket = socket ; bestDot = dot; }
         }
-        Debug.Log(bestSocket);
         return faces.Find(x => x.socket == bestSocket);
     }
     public void ChangeSize(bool increase)

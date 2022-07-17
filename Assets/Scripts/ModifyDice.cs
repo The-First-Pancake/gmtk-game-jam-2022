@@ -9,8 +9,9 @@ public class ModifyDice : MonoBehaviour
     float diceSpacing = 2.5f;
     float dicerotateSpeed = 60;
     public DicePoolManager dicePoolManager;
+    Transform clickedSocket = null;
 
-
+    public
     void Start()
     {
         diceZoomPoint = Camera.main.transform.Find("DiceZoomPoint");
@@ -21,8 +22,7 @@ public class ModifyDice : MonoBehaviour
     {
         yield return null; //wait a frame in case this is happening right away (TODO remove this)
 
-        selectedSocket = null;
-
+        clickedSocket = null;
         //freeze dice
         foreach (Dice dice in dicePoolManager.diceInPool)
         {
@@ -42,11 +42,11 @@ public class ModifyDice : MonoBehaviour
 
 
 
-        while(selectedSocket == null)
+        while(clickedSocket == null)
         {
             foreach (Dice dice in dicePoolManager.diceInPool)
             {
-                dice.transform.Rotate(new Vector3(1, 0, 1) * dicerotateSpeed * Time.deltaTime);
+                dice.transform.Rotate(new Vector3(1, 1, Mathf.Sin(Time.time)) * dicerotateSpeed * Time.deltaTime);
             }
 
             if (Input.GetMouseButtonDown(0))
@@ -55,17 +55,22 @@ public class ModifyDice : MonoBehaviour
                 RaycastHit[] raycastHits = Physics.RaycastAll(ray, 100f);
                 foreach (RaycastHit raycastHit in raycastHits)
                 {
-                    Dice hitDie = dicePoolManager.diceInPool.Find(x => raycastHit.transform == x.diceBody.transform);
-                    if (hitDie)
+                    foreach (Dice dice in dicePoolManager.diceInPool)
                     {
-                        Transform hitsocket = hitDie.sockets.Find(x => raycastHit.transform == x);
-                        selectedSocket.Invoke(hitsocket);
-                        break;
+                        Transform hitsocket = dice.sockets.Find(x => raycastHit.transform == x);
+                        if (hitsocket)
+                        {
+                            clickedSocket = hitsocket;
+                            break;
+                        }
                     }
+                    if (clickedSocket) { break; }
                 }
             }
             yield return null;
         }
+
+        Debug.Log(clickedSocket);
     }
 
     

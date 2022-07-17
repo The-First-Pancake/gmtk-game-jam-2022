@@ -45,7 +45,6 @@ public class GameManager : MonoBehaviour
     }
    public Pip getPipOfType(PipType type)
     {
-        Debug.Log(pips.Find(x => x.type == type));
         return pips.Find(x => x.type == type);
     }
     public GameObject getFacePrefab_OfSize(int size)
