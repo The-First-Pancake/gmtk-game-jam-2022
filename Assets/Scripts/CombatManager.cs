@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public enum CombatState {
     NOT_IN_COMBAT,
@@ -10,12 +11,20 @@ public enum CombatState {
     END_COMBAT,
 }
 
+[Serializable]
+public struct CombatThresholds {
+    public int combat;
+    public int evade;
+    public int search;
+}
+
 public class CombatManager : MonoBehaviour
 {
 
     public CombatState state = CombatState.NOT_IN_COMBAT;
     public int numRerollsAllowed = 3;
     public int numRollsLeft;
+    public CombatThresholds combatThresholds;
 
     // Start is called before the first frame update
     void Start()
@@ -52,15 +61,43 @@ public class CombatManager : MonoBehaviour
                 }
                 break;
             case CombatState.RESOLUTION:
+                PoolResults dicePoolResults = GameManager.instance.player.dicePool.GetPoolResults();
+                // Check loot
+                if (dicePoolResults.pips[((int)PipType.Search)] >= combatThresholds.search) {
+                    Debug.Log("Got Lunch");
+                    // Call loot reward
+                }
+                if (dicePoolResults.best_combat >= combatThresholds.combat) {
+                    Debug.Log("Killed Alien");
+                    // Call victory reward / kill animation function
+                } else if (dicePoolResults.pips[((int)PipType.Evade)] >= combatThresholds.evade) {
+                    Debug.Log("Snuck Past");
+                    // Call sneak animation
+                } else {
+                    Debug.Log("Got Hit");
+                    // Call harm
+                }
+                state = CombatState.END_COMBAT;
                 break;
             case CombatState.END_COMBAT:
+                // Nothing to do yet, but I bet there will be
+                state = CombatState.NOT_IN_COMBAT;
                 break;
         }
     }
 
     [ContextMenu("Start Combat")]
-    public void StartCombat() {
+    public void TestCombat() {
+        CombatThresholds testCombat = new CombatThresholds();
+        testCombat.combat = 2;
+        testCombat.evade = 3;
+        testCombat.search = 2;
+        StartCombat(testCombat);
+    }
+
+    public void StartCombat(CombatThresholds thresholds) {
         if (state == CombatState.NOT_IN_COMBAT) {
+            combatThresholds = thresholds;
             numRollsLeft = numRerollsAllowed;
             foreach (DiceRoller diceRoller in GameManager.instance.player.dicePool.diceRollers) {
                 diceRoller.SetEnabled(true);
