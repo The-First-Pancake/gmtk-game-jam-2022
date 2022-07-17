@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using System;
 
 [Serializable]
@@ -14,6 +15,7 @@ public class EncounterPlanner : MonoBehaviour
 {
     public List<Encounter> encounterPlan;
     public Encounter currentEncounter;
+    public UnityEvent OnEncounterStart;
     private int encounterIndex = 0;
     private bool loadNextEncounter = true;
     // Start is called before the first frame update
@@ -28,7 +30,7 @@ public class EncounterPlanner : MonoBehaviour
         if (loadNextEncounter && encounterIndex < encounterPlan.Count) {
             loadNextEncounter = false;
             currentEncounter = encounterPlan[encounterIndex];
-            GameManager.instance.combatManager.StartCombat(currentEncounter.thresholds);
+            OnEncounterStart.Invoke();
             encounterIndex++;
         }
     }
