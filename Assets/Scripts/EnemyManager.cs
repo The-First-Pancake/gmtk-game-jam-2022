@@ -37,6 +37,10 @@ public class EnemyManager : MonoBehaviour
         OnNewEnemy.Invoke();
     }
 
+    private void EnemySlideIntoView() {
+        Enemy.transform.TransformDirection(Vector3.left);
+    }
+
     // Update is called once per frame
     void Update()
     {
