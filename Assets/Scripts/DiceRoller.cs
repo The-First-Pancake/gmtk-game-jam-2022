@@ -22,12 +22,15 @@ public class DiceRoller : MonoBehaviour
     private float debouncedVelocity = 0;
     private int debounceCounter = 0;
     private bool emitSettled = false;
+
+    private AudioSource diceSound;
     
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         camera = GameManager.instance.camera;
+        diceSound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -58,6 +61,12 @@ public class DiceRoller : MonoBehaviour
                     diceState = DiceState.PICKED_UP;
                 }
                 break;
+        }
+    }
+
+    void OnCollisionEnter(Collision collision) {
+        if (!diceSound.isPlaying) {
+            diceSound.Play();
         }
     }
 

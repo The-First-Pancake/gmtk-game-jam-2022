@@ -36,6 +36,7 @@ public class CombatManager : MonoBehaviour
     public UnityEvent OnSneak;
     public UnityEvent OnPlayerHit;
     public UnityEvent OnCombatEnd;
+    private PoolResults dicePoolResults;
 
     // Start is called before the first frame update
     void Start()
@@ -51,7 +52,6 @@ public class CombatManager : MonoBehaviour
             EndCombat();
         }
 
-        PoolResults dicePoolResults;
         switch (state)
         {
             case CombatState.NOT_IN_COMBAT:
@@ -74,12 +74,12 @@ public class CombatManager : MonoBehaviour
                     foreach (DiceRoller diceRoller in GameManager.instance.player.dicePool.diceRollers) {
                         diceRoller.SetEnabled(false);
                     }
+                    // Check loot
+                    dicePoolResults = GameManager.instance.player.dicePool.GetPoolResults();
                     state = CombatState.CHECK_SEARCH;
                 }
                 break;
             case CombatState.CHECK_SEARCH:
-                // Check loot
-                dicePoolResults = GameManager.instance.player.dicePool.GetPoolResults();
                 if (dicePoolResults.pips[((int)PipType.Search)] >= combatThresholds.search) {
                     Debug.Log("Got Lunch");
                     OnSearch.Invoke();
@@ -149,6 +149,8 @@ public class CombatManager : MonoBehaviour
             foreach (DiceRoller diceRoller in GameManager.instance.player.dicePool.diceRollers) {
                 diceRoller.SetEnabled(false);
             }
+            // Check loot
+            dicePoolResults = GameManager.instance.player.dicePool.GetPoolResults();
             state = CombatState.CHECK_SEARCH;
         }
     }
