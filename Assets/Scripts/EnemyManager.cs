@@ -59,7 +59,7 @@ public class EnemyManager : MonoBehaviour
     private void EnemySlideOutView() {
         if (Enemy != null && (Enemy.transform.position.x < EnemySceneMarkerOut.transform.position.x)) {
             float speedOffset = (EnemySceneMarkerOut.transform.position.x / Enemy.transform.position.x) * 0.1f;
-            Enemy.transform.Translate(Vector3.forward * speedOffset);
+            Enemy.transform.Translate(Vector3.back * speedOffset);
         } else if (Enemy != null && (Enemy.transform.position.x >= EnemySceneMarkerOut.transform.position.x)) {
             Destroy(Enemy);
             PlayerLost = false;
