@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using System;
 
 [Serializable]
@@ -27,12 +28,17 @@ public class EncounterPlanner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (loadNextEncounter && encounterIndex < encounterPlan.Count) {
-            loadNextEncounter = false;
-            currentEncounter = encounterPlan[encounterIndex];
-            OnEncounterStart.Invoke();
-            encounterIndex++;
+        if (loadNextEncounter) {
+            if (encounterIndex < encounterPlan.Count) {
+                loadNextEncounter = false;
+                currentEncounter = encounterPlan[encounterIndex];
+                OnEncounterStart.Invoke();
+                encounterIndex++;
+            } else {
+                SceneManager.LoadScene(4);
+            }
         }
+        
     }
 
     public void LoadNextEncounter() {
