@@ -10,7 +10,7 @@ public class startingDice : MonoBehaviour
     public List<_Dice> starting_Dice = new List<_Dice>();
 
 
-    public void Start()
+    public void Awake()
     {
         foreach (_Dice dice in starting_Dice)
         {

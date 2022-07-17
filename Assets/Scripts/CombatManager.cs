@@ -91,7 +91,7 @@ public class CombatManager : MonoBehaviour
             case CombatState.WAIT_FOR_SEARCH_SELECT:
                 break;
             case CombatState.RESOLUTION:
-                dicePoolResults = GameManager.instance.player.dicePool.GetPoolResults();
+                // dicePoolResults = GameManager.instance.player.dicePool.GetPoolResults();
                 if (dicePoolResults.best_combat >= combatThresholds.combat) {
                     Debug.Log("Killed Alien");
                     OnKillAlien.Invoke();
