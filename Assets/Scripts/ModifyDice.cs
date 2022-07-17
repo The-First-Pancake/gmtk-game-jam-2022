@@ -5,7 +5,7 @@ using UnityEngine;
 public class ModifyDice : MonoBehaviour
 {
     private Transform zoomPoint;
-    private Vector3 faceHoldPoint = new Vector3(0, .5f, -.5f);
+    private Vector3 faceHoldPoint = new Vector3(0, 2, -1f);
 
     float objectSlideSpeed = 15;
     float distanceToOffscreen = 8;
