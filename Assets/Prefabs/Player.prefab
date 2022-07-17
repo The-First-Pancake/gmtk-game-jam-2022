@@ -48,6 +48,7 @@ MonoBehaviour:
   maxHealth: 10
   health: 10
   dicePool: {fileID: 0}
+  deathScene: 2
 --- !u!1 &7092283794899147862
 GameObject:
   m_ObjectHideFlags: 0
