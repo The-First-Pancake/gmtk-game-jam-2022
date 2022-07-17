@@ -37,6 +37,14 @@ public class Dice : MonoBehaviour
             highlightedFace.SetHighlight(false);
             highlightedFace = null;
         }
+        
+        // Check player damage
+        if (diceBody.GetComponent<DiceRoller>().IsJustSettled()) {
+            Face upFace = getUpFace();
+            if (upFace && upFace.faceType == FaceType.isopod) {
+                GameManager.instance.player.Damage();
+            }
+        }
     }
 
     [ContextMenu("Generate Model")]

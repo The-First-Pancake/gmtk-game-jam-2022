@@ -21,6 +21,7 @@ public class DiceRoller : MonoBehaviour
     private DiceState diceState = DiceState.DISABLED;
     private float debouncedVelocity = 0;
     private int debounceCounter = 0;
+    private bool emitSettled = false;
     
     // Start is called before the first frame update
     void Start()
@@ -44,6 +45,7 @@ public class DiceRoller : MonoBehaviour
                 break;
             case DiceState.ROLLING:
                 if (CheckSettled()) {
+                    emitSettled = true;
                     rb.isKinematic = true;
                     Debug.Log("Entered Settled");
                     diceState = DiceState.SETTLED;
@@ -123,5 +125,13 @@ public class DiceRoller : MonoBehaviour
 
     public bool IsSettled() {
         return diceState ==  DiceState.SETTLED;
+    }
+
+    public bool IsJustSettled() {
+        if (emitSettled) {
+            emitSettled = false;
+            return true;
+        }
+        return false;
     }
 }
