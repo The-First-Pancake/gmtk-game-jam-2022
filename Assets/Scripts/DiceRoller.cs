@@ -119,4 +119,8 @@ public class DiceRoller : MonoBehaviour
             diceState = DiceState.DISABLED;
         }
     }
+
+    public bool IsSettled() {
+        return diceState ==  DiceState.SETTLED;
+    }
 }

@@ -10,6 +10,9 @@ public class ResultsDisplay : MonoBehaviour
     public GameObject heartPrefab;
     public GameObject healtbar;
     private List<GameObject> hearts = new List<GameObject>();
+    public GameObject rerollPrefab;
+    public GameObject rerollBar;
+    private List<GameObject> rerolls = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +20,11 @@ public class ResultsDisplay : MonoBehaviour
             GameObject newheart = Instantiate(heartPrefab, healtbar.transform);
             hearts.Add(newheart);
         }
+
+        for (int i = 0; i < GameManager.instance.combatManager.numRollsLeft; i++) {
+            GameObject newReroll = Instantiate(rerollPrefab, rerollBar.transform);
+            rerolls.Add(newReroll);
+        } 
     }
 
     // Update is called once per frame
@@ -29,6 +37,15 @@ public class ResultsDisplay : MonoBehaviour
         if (hearts.Count > GameManager.instance.player.health) {
             Destroy(hearts[0]);
             hearts.RemoveAt(0);
+        }
+
+        if (rerolls.Count > GameManager.instance.combatManager.numRollsLeft) {
+            Destroy(rerolls[0]);
+            rerolls.RemoveAt(0);
+        }
+        if (rerolls.Count < GameManager.instance.combatManager.numRollsLeft) {
+            GameObject newReroll = Instantiate(rerollPrefab, rerollBar.transform);
+            rerolls.Add(newReroll);
         }
     }
 }
