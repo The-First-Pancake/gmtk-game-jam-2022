@@ -44,7 +44,6 @@ public class ResultsDisplay : MonoBehaviour
             rerolls.RemoveAt(0);
         }
         if (rerolls.Count < GameManager.instance.combatManager.numRollsLeft) {
-            Debug.Log("hellow");
             GameObject newReroll = Instantiate(rerollPrefab, rerollBar.transform);
             rerolls.Add(newReroll);
         }
