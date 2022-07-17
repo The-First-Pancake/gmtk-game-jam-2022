@@ -26,10 +26,14 @@ public class CombatManager : MonoBehaviour
     public int numRollsLeft;
     public CombatThresholds combatThresholds;
 
+    private GameObject[] enemies;
+    private ParticleSystem enemyDeathParticle;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        enemyDeathParticle = GameObject.FindGameObjectsWithTag("Enemy Death Particle")[0].GetComponent<ParticleSystem>();
     }
 
     // Update is called once per frame
@@ -69,6 +73,8 @@ public class CombatManager : MonoBehaviour
                 }
                 if (dicePoolResults.best_combat >= combatThresholds.combat) {
                     Debug.Log("Killed Alien");
+                    Destroy(enemies[0]);
+                    enemyDeathParticle.Play(true);
                     // Call victory reward / kill animation function
                 } else if (dicePoolResults.pips[((int)PipType.Evade)] >= combatThresholds.evade) {
                     Debug.Log("Snuck Past");
