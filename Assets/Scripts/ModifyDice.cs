@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Events;
 public class ModifyDice : MonoBehaviour
 {
     private Transform zoomPoint;
@@ -14,13 +14,18 @@ public class ModifyDice : MonoBehaviour
     float dicerotateSpeed = 60;
     public DicePoolManager dicePoolManager;
 
+    public UnityEvent onDiceModComplete;
+
     private Vector3 theFuckOffZone = new Vector3(1000, 1000, 1000);
 
 
     void Start()
     {
         zoomPoint = Camera.main.transform.Find("DiceZoomPoint");
-        StartCoroutine(AddFaceOfPlayersChoice());
+
+        Face face1 = Instantiate(GameManager.instance.getFacePrefab_OfSize(6)).GetComponent<Face>();
+
+        
     }
 
 
@@ -46,9 +51,22 @@ public class ModifyDice : MonoBehaviour
     {
         return Random.Range(Mathf.FloorToInt(pip.abundance.x), Mathf.FloorToInt(pip.abundance.y));
     }
-    public List<Face> CreateSetOfFaces(int count = 3)
+    public Face createRandomFace()
     {
-        List<Face> faceOptions = new List<Face>();
+        Face newFace = Instantiate(GameManager.instance.getFacePrefab_OfSize(6)).GetComponent<Face>();
+
+        Pip pip = chooseRandomPip();
+        int quantity = choosePipQuantitiy(pip);
+        for (int j = 0; j < quantity; j++)
+        {
+            newFace.addPip(pip.type);
+        }
+        newFace.configureFace(FaceType.pip);
+        return newFace;
+    }
+    public List<Face> CreateSetOfRandomFaces(int count = 3)
+    {
+        List<Face> faces = new List<Face>();
         for (int i = 0; i < count; i++)
         {
             Face newFace = Instantiate(GameManager.instance.getFacePrefab_OfSize(6)).GetComponent<Face>();
@@ -62,9 +80,9 @@ public class ModifyDice : MonoBehaviour
 
             newFace.configureFace(FaceType.pip);
 
-            faceOptions.Add(newFace);
+            faces.Add(newFace);
         }
-        return faceOptions;
+        return faces;
     }
 
 
@@ -80,57 +98,96 @@ public class ModifyDice : MonoBehaviour
             objects[i].rotation = zoomPoint.rotation;
         }
     }
-
-    public IEnumerator AddFaceOfPlayersChoice()
+    public void AddGivenFace(Face face)
     {
-        Face chosenFace = null;
-        yield return SelectNewFace((face) => {chosenFace = face;});
-
-        Transform chosenSocket = null;
-        yield return SelectSocketFromDicePool((socket) => {chosenSocket = socket; });
-        
-        Dice chosenDice = null;
-        foreach (Dice dice in dicePoolManager.diceInPool)
+        StartCoroutine(_AddGivenFace());
+        IEnumerator _AddGivenFace()
         {
-            if (dice.sockets.Contains(chosenSocket))
-            { chosenDice = dice; }
-        }
-        chosenDice.AttatchFace(chosenFace, chosenSocket);
+            face.transform.position = zoomPoint.position + faceHoldPoint;
+            face.transform.rotation = zoomPoint.rotation;
+            face.SetHighlight(true);
+            yield return new WaitForSeconds(2f);
+            yield return slideTransformAlong(face.transform, Vector2.up * distanceToOffscreen);
+            StartCoroutine(slideTransformTo(face.transform, zoomPoint.TransformPoint(faceHoldPoint)));
 
-        StartCoroutine(ShowOffTransform(chosenDice.diceBody.transform, 4));
-        yield return new WaitForSeconds(3f);
-        yield return slideTransformAlong(chosenDice.diceBody.transform, Vector2.up * distanceToOffscreen);
-        chosenDice.sendHome();
+            Transform chosenSocket = null;
+            yield return SelectSocketFromDicePool((socket) => { chosenSocket = socket; });
+
+            Dice chosenDice = null;
+            foreach (Dice dice in dicePoolManager.diceInPool)
+            {
+                if (dice.sockets.Contains(chosenSocket))
+                { chosenDice = dice; }
+            }
+            chosenDice.AttatchFace(face, chosenSocket);
+
+            StartCoroutine(ShowOffTransform(chosenDice.diceBody.transform, 4));
+            yield return new WaitForSeconds(3f);
+            yield return slideTransformAlong(chosenDice.diceBody.transform, Vector2.up * distanceToOffscreen);
+            chosenDice.sendHome();
+            onDiceModComplete.Invoke();
+        }
     }
-    public IEnumerator AddBugFace()
+    public void AddFaceOfPlayersChoice()
     {
-        Face face = Instantiate(GameManager.instance.getFacePrefab_OfSize(6)).GetComponent<Face>();
-        face.configureFace(FaceType.isopod);
-        face.transform.position = zoomPoint.position + faceHoldPoint;
-        face.transform.rotation = zoomPoint.rotation;
-        face.SetHighlight(true);
-
-        StartCoroutine(ShowOffTransform(face.transform, 4));
-        yield return new WaitForSeconds(3f);
-        yield return slideTransformAlong(face.transform, Vector2.up * distanceToOffscreen);
-        StartCoroutine(slideTransformTo(face.transform, zoomPoint.TransformPoint(faceHoldPoint)));
-
-
-        Transform chosenSocket = null;
-        yield return SelectSocketFromDicePool((socket) => { chosenSocket = socket; });
-
-        Dice chosenDice = null;
-        foreach (Dice dice in dicePoolManager.diceInPool)
+        StartCoroutine(_AddFaceOfPlayersChoice());
+        IEnumerator _AddFaceOfPlayersChoice()
         {
-            if (dice.sockets.Contains(chosenSocket))
-            { chosenDice = dice; }
-        }
-        chosenDice.AttatchFace(face, chosenSocket);
+            Face chosenFace = null;
+            yield return SelectNewFace((face) => { chosenFace = face; });
 
-        StartCoroutine(ShowOffTransform(chosenDice.diceBody.transform, 4));
-        yield return new WaitForSeconds(3f);
-        yield return slideTransformAlong(chosenDice.diceBody.transform, Vector2.up * distanceToOffscreen);
-        chosenDice.sendHome();
+            Transform chosenSocket = null;
+            yield return SelectSocketFromDicePool((socket) => { chosenSocket = socket; });
+
+            Dice chosenDice = null;
+            foreach (Dice dice in dicePoolManager.diceInPool)
+            {
+                if (dice.sockets.Contains(chosenSocket))
+                { chosenDice = dice; }
+            }
+            chosenDice.AttatchFace(chosenFace, chosenSocket);
+
+            StartCoroutine(ShowOffTransform(chosenDice.diceBody.transform, 4));
+            yield return new WaitForSeconds(3f);
+            yield return slideTransformAlong(chosenDice.diceBody.transform, Vector2.up * distanceToOffscreen);
+            chosenDice.sendHome();
+            onDiceModComplete.Invoke();
+        }
+    }
+    public void AddBugFace()
+    {
+        StartCoroutine(AddBugFace());
+        IEnumerator AddBugFace()
+        {
+            Face face = Instantiate(GameManager.instance.getFacePrefab_OfSize(6)).GetComponent<Face>();
+            face.configureFace(FaceType.isopod);
+            face.transform.position = zoomPoint.position + faceHoldPoint;
+            face.transform.rotation = zoomPoint.rotation;
+            face.SetHighlight(true);
+
+            StartCoroutine(ShowOffTransform(face.transform, 4));
+            yield return new WaitForSeconds(3f);
+            yield return slideTransformAlong(face.transform, Vector2.up * distanceToOffscreen);
+            StartCoroutine(slideTransformTo(face.transform, zoomPoint.TransformPoint(faceHoldPoint)));
+
+
+            Transform chosenSocket = null;
+            yield return SelectSocketFromDicePool((socket) => { chosenSocket = socket; });
+
+            Dice chosenDice = null;
+            foreach (Dice dice in dicePoolManager.diceInPool)
+            {
+                if (dice.sockets.Contains(chosenSocket))
+                { chosenDice = dice; }
+            }
+            chosenDice.AttatchFace(face, chosenSocket);
+
+            StartCoroutine(ShowOffTransform(chosenDice.diceBody.transform, 4));
+            yield return new WaitForSeconds(3f);
+            yield return slideTransformAlong(chosenDice.diceBody.transform, Vector2.up * distanceToOffscreen);
+            chosenDice.sendHome();
+            onDiceModComplete.Invoke();
+        }
     }
     public IEnumerator ShowOffTransform(Transform transform, float time)
     {
@@ -143,13 +200,12 @@ public class ModifyDice : MonoBehaviour
             yield return null;
         }
     }
-
     public IEnumerator SelectNewFace(System.Action<Face> callback = null)
     {
         yield return null; //wait a frame in case this is happening right away (TODO remove this)
         Face selectedFace = null;
 
-        List<Face> faces = CreateSetOfFaces();
+        List<Face> faces = CreateSetOfRandomFaces();
 
         //Allign all the transforms
         List<Transform> faceTransformList = new List<Transform>();
@@ -194,7 +250,6 @@ public class ModifyDice : MonoBehaviour
         yield return slideTransformTo(selectedFace.transform, zoomPoint.TransformPoint(faceHoldPoint));
         if (callback != null) { callback.Invoke(selectedFace); }
     }
-
     public IEnumerator SelectSocketFromDicePool(System.Action<Transform> callback = null)
     {
         yield return null; //wait a frame in case this is happening right away (TODO remove this)
