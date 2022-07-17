@@ -17,8 +17,8 @@ public class Flare : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        int intensity = Random.Range(2000, 7500);
+        int intensity = Random.Range(75, 150);
         flareRed.intensity = intensity;
-        flareWhite.intensity = intensity * 2;
+        flareWhite.intensity = intensity;
     }
 }
