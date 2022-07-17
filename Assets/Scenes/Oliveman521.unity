@@ -194,6 +194,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoomManager
       objectReference: {fileID: 0}
+    - target: {fileID: 463297899209018948, guid: 476ed374b798a25eaa71f2832f3f09cc,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.74288183
+      objectReference: {fileID: 0}
+    - target: {fileID: 463297899209018948, guid: 476ed374b798a25eaa71f2832f3f09cc,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.6694227
+      objectReference: {fileID: 0}
+    - target: {fileID: 463297899209018948, guid: 476ed374b798a25eaa71f2832f3f09cc,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 463297899209018948, guid: 476ed374b798a25eaa71f2832f3f09cc,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 463297899209018948, guid: 476ed374b798a25eaa71f2832f3f09cc,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 84.045
+      objectReference: {fileID: 0}
+    - target: {fileID: 6312651585133884112, guid: 476ed374b798a25eaa71f2832f3f09cc,
+        type: 3}
+      propertyPath: m_Name
+      value: DiceZoomPoint
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 476ed374b798a25eaa71f2832f3f09cc, type: 3}
 --- !u!1001 &1377307515
@@ -563,6 +593,46 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1784033045126038494, guid: 9d99aeeb1ec23cc2a8a81e76ab5c7714,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.8535535
+      objectReference: {fileID: 0}
+    - target: {fileID: 1784033045126038494, guid: 9d99aeeb1ec23cc2a8a81e76ab5c7714,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.35355338
+      objectReference: {fileID: 0}
+    - target: {fileID: 1784033045126038494, guid: 9d99aeeb1ec23cc2a8a81e76ab5c7714,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.1464466
+      objectReference: {fileID: 0}
+    - target: {fileID: 1784033045126038494, guid: 9d99aeeb1ec23cc2a8a81e76ab5c7714,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.35355338
+      objectReference: {fileID: 0}
+    - target: {fileID: 1784033045126038494, guid: 9d99aeeb1ec23cc2a8a81e76ab5c7714,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 1784033045126038494, guid: 9d99aeeb1ec23cc2a8a81e76ab5c7714,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1784033045126038494, guid: 9d99aeeb1ec23cc2a8a81e76ab5c7714,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504322381446511366, guid: 9d99aeeb1ec23cc2a8a81e76ab5c7714,
+        type: 3}
+      propertyPath: diceSelectionAreaAnchor
+      value: 
+      objectReference: {fileID: 1502590544}
     - target: {fileID: 7092283794792720691, guid: 9d99aeeb1ec23cc2a8a81e76ab5c7714,
         type: 3}
       propertyPath: m_Name
@@ -637,26 +707,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ba29985444873cc6a882ae4e3cd3483, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1377307517 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7092283794899147862, guid: 9d99aeeb1ec23cc2a8a81e76ab5c7714,
+--- !u!4 &1502590544 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5048696138337153100, guid: 476ed374b798a25eaa71f2832f3f09cc,
     type: 3}
-  m_PrefabInstance: {fileID: 1377307515}
+  m_PrefabInstance: {fileID: 652226891}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1377307518
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1377307517}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b93262c051dc4b4bbcbe2cd89101d89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  diceSelectionAreaAnchor: {fileID: 0}
-  dicePoolManager: {fileID: 0}
 --- !u!1001 &1950377930
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1020,6 +1076,36 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1497868396160739877, guid: fdf02c53e21660343a32766799de3671,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1497868396322282342, guid: fdf02c53e21660343a32766799de3671,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1497868396322282342, guid: fdf02c53e21660343a32766799de3671,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1497868396322282342, guid: fdf02c53e21660343a32766799de3671,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1497868396322282342, guid: fdf02c53e21660343a32766799de3671,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1497868396322282342, guid: fdf02c53e21660343a32766799de3671,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1497868396322282342, guid: fdf02c53e21660343a32766799de3671,
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
