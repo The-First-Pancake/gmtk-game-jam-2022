@@ -10,6 +10,7 @@ public class EnemyManager : MonoBehaviour
     private GameObject DeathParticles;
     public GameObject EnemyPrefab;
     public GameObject GameScene;
+    public GameObject EnemySceneMarker;
     private ParticleSystem DeathParticlesSystem;
     public UnityEvent OnNewEnemy;
 
@@ -36,12 +37,15 @@ public class EnemyManager : MonoBehaviour
     }
 
     private void EnemySlideIntoView() {
-        Enemy.transform.TransformDirection(Vector3.left);
+        if (Enemy != null && (Enemy.transform.position.x > EnemySceneMarker.transform.position.x)) {
+            float speedOffset = (Enemy.transform.position.x / EnemySceneMarker.transform.position.x) * 0.1f;
+            Enemy.transform.Translate(Vector3.forward * speedOffset);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        EnemySlideIntoView();
     }
 }
