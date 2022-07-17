@@ -15,7 +15,7 @@ public class ModifyDice : MonoBehaviour
     void Start()
     {
         zoomPoint = Camera.main.transform.Find("DiceZoomPoint");
-        ChooseFromFaces();
+        
     }
 
 
@@ -78,6 +78,13 @@ public class ModifyDice : MonoBehaviour
             float newX = startX + objectSpacing * i;
             objects[i].position = zoomPoint.position + new Vector3(newX, 0, 0);
         }
+    }
+
+    public IEnumerator SelectNewFace(System.Action<Transform> selectedSocket = null)
+    {
+        yield return null; //wait a frame in case this is happening right away (TODO remove this)
+        Face clickedFace = null;
+        yield return null;
     }
 
     public IEnumerator SelectDiceSocketFromPool(System.Action<Transform> selectedSocket = null)
