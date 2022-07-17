@@ -431,7 +431,7 @@ GameObject:
   - component: {fileID: 2653434920066756202}
   m_Layer: 0
   m_Name: Alien Red
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
