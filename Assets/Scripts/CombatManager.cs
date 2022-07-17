@@ -30,6 +30,7 @@ public class CombatManager : MonoBehaviour
     public int numRollsLeft;
     public CombatThresholds combatThresholds;
 
+    public UnityEvent OnCombatStart;
     public UnityEvent OnSearch;
     public UnityEvent OnKillAlien;
     public UnityEvent OnSneak;
@@ -124,6 +125,7 @@ public class CombatManager : MonoBehaviour
 
     private void StartCombat(CombatThresholds thresholds) {
         if (state == CombatState.NOT_IN_COMBAT) {
+            OnCombatStart.Invoke();
             combatThresholds = thresholds;
             numRollsLeft = numRerollsAllowed;
             foreach (DiceRoller diceRoller in GameManager.instance.player.dicePool.diceRollers) {
@@ -138,6 +140,7 @@ public class CombatManager : MonoBehaviour
     }
 
     public void EndCombat() {
+        Debug.Log("Attempting to end combat");
         if (state == CombatState.ROLLING || state == CombatState.WAIT_FOR_SETTLING) {
             foreach (DiceRoller diceRoller in GameManager.instance.player.dicePool.diceRollers) {
                 diceRoller.SetEnabled(false);
