@@ -46,6 +46,11 @@ public class CombatManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            EndCombat();
+        }
+
         PoolResults dicePoolResults;
         switch (state)
         {
@@ -140,7 +145,6 @@ public class CombatManager : MonoBehaviour
     }
 
     public void EndCombat() {
-        Debug.Log("Attempting to end combat");
         if (state == CombatState.ROLLING || state == CombatState.WAIT_FOR_SETTLING) {
             foreach (DiceRoller diceRoller in GameManager.instance.player.dicePool.diceRollers) {
                 diceRoller.SetEnabled(false);

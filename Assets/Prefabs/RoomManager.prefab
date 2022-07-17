@@ -51,6 +51,9 @@ MonoBehaviour:
     combat: 0
     evade: 0
     search: 0
+  OnCombatStart:
+    m_PersistentCalls:
+      m_Calls: []
   OnSearch:
     m_PersistentCalls:
       m_Calls: []

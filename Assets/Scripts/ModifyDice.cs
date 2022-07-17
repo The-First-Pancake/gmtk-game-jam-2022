@@ -85,7 +85,6 @@ public class ModifyDice : MonoBehaviour
 
     public void GenerateSearchRewardFace()
     {
-        Debug.Log("Generating die face");
         Face face = createRandomFace();
         face.transform.position = searchFaceRewardPt.position;
         face.transform.rotation = searchFaceRewardPt.rotation;
