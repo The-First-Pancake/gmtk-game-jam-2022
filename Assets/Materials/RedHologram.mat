@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: HologramText
+  m_Name: RedHologram
   m_Shader: {fileID: 4800000, guid: d9af2391e2b3e9ca987502061ea42724, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -94,7 +94,7 @@ Material:
     - _DstBlend: 0
     - _EnvironmentReflections: 1
     - _GlitchIntensity: 0.0171
-    - _GlitchSpeed: 16
+    - _GlitchSpeed: 18
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
@@ -105,7 +105,7 @@ Material:
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _Scale: 0.5
-    - _ScrollSpeedV: 5
+    - _ScrollSpeedV: 3.18
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
