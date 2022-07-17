@@ -10,9 +10,35 @@ public class Dice : MonoBehaviour
     public List<Transform> sockets = new List<Transform>();
     public List<Face> faces;
     public GameObject diceBody;
+
+    private Face highlightedFace = null;
     public void Start()
     {
         generateTestDie();
+    }
+    public void Update()
+    {
+
+        Debug.Log(diceBody.GetComponent<DiceRoller>().CheckSettled());
+        //Check highlights
+        if (diceBody.GetComponent<DiceRoller>().CheckSettled())
+        { 
+            Face upFace = getUpFace();
+            if (upFace)
+            {
+                Debug.Log("on");
+                highlightedFace.SetHighlight(false); //clear old face if there was one (there shouldn't be but just in case
+
+                highlightedFace = upFace;
+                upFace.SetHighlight(true);
+            }
+        }
+        else if(highlightedFace)
+        {
+            Debug.Log("off");
+            highlightedFace.SetHighlight(false);
+            highlightedFace = null;
+        }
     }
 
     [ContextMenu("Generate Model")]
@@ -57,7 +83,7 @@ public class Dice : MonoBehaviour
         face3.configureFace(FaceType.isopod);
     }
 
-    public Face? getUpFace()
+    public Face getUpFace()
     {
         float bestDot = 0;
         Transform bestSocket = null;

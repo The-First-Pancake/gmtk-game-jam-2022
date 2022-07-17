@@ -15,23 +15,56 @@ public class ModifyDice : MonoBehaviour
     void Start()
     {
         zoomPoint = Camera.main.transform.Find("DiceZoomPoint");
-        StartCoroutine(SelectDiceSocketFromPool());
+        ChooseAFace();
     }
 
+
+    public Pip choosePip()
+    {
+        float randomNumberCap = 0;
+        foreach(Pip pip in GameManager.instance.pips)
+        {
+            randomNumberCap += pip.rarity;
+        }
+        float randomNum = Random.Range(0, randomNumberCap);
+        foreach (Pip pip in GameManager.instance.pips)
+        {
+            randomNum -= pip.rarity;
+            if(randomNum <= 0)
+            {
+                return pip;
+            }
+        }
+        return (GameManager.instance.pips[0]);
+    }
+    public int choosePipQuantitiy(Pip pip)
+    {
+        return Random.Range(Mathf.FloorToInt(pip.abundance.x), Mathf.FloorToInt(pip.abundance.y));
+    }
     public void ChooseAFace()
     {
-
         int choices = 3;
         List<Face> faceOptions = new List<Face>();
+        List<Transform> faceOptionTransforms = new List<Transform>();
         for (int i = 0; i < choices; i++)
         {
-            Face face1 = Instantiate(GameManager.instance.getFacePrefab_OfSize(6)).GetComponent<Face>();
-            face1.configureFace(FaceType.pip);
-            faceOptions.Add(face1);
+            Face newFace = Instantiate(GameManager.instance.getFacePrefab_OfSize(6)).GetComponent<Face>();
 
+            Pip pip = choosePip();
+            int quantity = choosePipQuantitiy(pip);
+            for (int j = 0; j < quantity; j++)
+            {
+                newFace.addPip(pip.type);
+            }
 
+            newFace.configureFace(FaceType.pip);
+
+            faceOptions.Add(newFace);
+            faceOptionTransforms.Add(newFace.transform);
+            newFace.transform.rotation = Quaternion.Euler(zoomPoint.transform.rotation.eulerAngles); 
         }
 
+        moveTransformsTo_ZoomPoint(faceOptionTransforms);
     }
 
 

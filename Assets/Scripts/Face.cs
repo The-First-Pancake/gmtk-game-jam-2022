@@ -8,12 +8,19 @@ public class Face : MonoBehaviour
     public Dice dice; //TODO make this plug in on construct
     public List<Pip> pips;
     public Transform socket;
+    private Light light;
+    
 
     [Header("Child Objects")]
     public GameObject pipLayout;
     public GameObject plate;
     public GameObject isopod;
-    
+
+    private void Start()
+    {
+        light = GetComponentInChildren<Light>();
+    }
+
     public void configureFace(FaceType faceType)
     {
         this.faceType = faceType;
@@ -33,6 +40,10 @@ public class Face : MonoBehaviour
         }
     }
 
+    public void SetHighlight(bool state)
+    {
+        light.enabled = state;
+    }
     public void attatchFace(Dice dice, Transform socket)
     {
         this.socket = socket;
@@ -58,7 +69,6 @@ public class Face : MonoBehaviour
         //TODO check iff too many pips
         if(faceType != FaceType.pip) { Debug.LogWarning("tried to add pip to face that isn't a pip face"); return; }
         pips.Add(GameManager.instance.getPipOfType(type));
-        
     }
 }
 public enum FaceType
