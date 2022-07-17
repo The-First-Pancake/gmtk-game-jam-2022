@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using System;
 
 public enum CombatState {
@@ -25,6 +26,11 @@ public class CombatManager : MonoBehaviour
     public int numRerollsAllowed = 3;
     public int numRollsLeft;
     public CombatThresholds combatThresholds;
+
+    public UnityEvent OnSearch;
+    public UnityEvent OnKillAlien;
+    public UnityEvent OnSneak;
+    public UnityEvent OnPlayerHit;
 
     // Start is called before the first frame update
     void Start()
@@ -65,16 +71,19 @@ public class CombatManager : MonoBehaviour
                 // Check loot
                 if (dicePoolResults.pips[((int)PipType.Search)] >= combatThresholds.search) {
                     Debug.Log("Got Lunch");
-                    // Call loot reward
+                    OnSearch.Invoke();
                 }
                 if (dicePoolResults.best_combat >= combatThresholds.combat) {
                     Debug.Log("Killed Alien");
+                    OnKillAlien.Invoke();
                     // Call victory reward / kill animation function
                 } else if (dicePoolResults.pips[((int)PipType.Evade)] >= combatThresholds.evade) {
                     Debug.Log("Snuck Past");
+                    OnSneak.Invoke();
                     // Call sneak animation
                 } else {
                     Debug.Log("Got Hit");
+                    OnPlayerHit.Invoke();
                     // Call harm
                 }
                 state = CombatState.END_COMBAT;
