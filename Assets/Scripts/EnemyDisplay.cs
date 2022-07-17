@@ -9,6 +9,7 @@ public class EnemyDisplay : MonoBehaviour
     public TextMeshProUGUI combatText;
     public TextMeshProUGUI evasionText;
     public TextMeshProUGUI searchText;
+    public Transform searchPlatform;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +23,7 @@ public class EnemyDisplay : MonoBehaviour
             canvasObject.SetActive(true);
             combatText.text = GameManager.instance.combatManager.combatThresholds.combat.ToString();
             evasionText.text = GameManager.instance.combatManager.combatThresholds.evade.ToString();
-            searchText.text = GameManager.instance.combatManager.combatThresholds.evade.ToString();
+            searchText.text = GameManager.instance.combatManager.combatThresholds.search.ToString();
         } else {
             canvasObject.SetActive(false);   
         }

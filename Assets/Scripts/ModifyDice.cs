@@ -24,10 +24,12 @@ public class ModifyDice : MonoBehaviour
         zoomPoint = Camera.main.transform.Find("DiceZoomPoint");
 
         Face face1 = Instantiate(GameManager.instance.getFacePrefab_OfSize(6)).GetComponent<Face>();
-
-        
     }
 
+    public void MakeSearchReqardFace()
+    {
+
+    }
 
     public Pip chooseRandomPip()
     {
