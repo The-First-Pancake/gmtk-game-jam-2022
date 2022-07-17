@@ -65,7 +65,9 @@ public class DiceRoller : MonoBehaviour
     }
 
     void OnCollisionEnter(Collision collision) {
-        diceSound.Play();
+        if (!diceSound.isPlaying) {
+            diceSound.Play();
+        }
     }
 
     bool CheckDrop() {
