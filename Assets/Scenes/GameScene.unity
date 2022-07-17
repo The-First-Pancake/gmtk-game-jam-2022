@@ -1892,7 +1892,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1.3636e-41, y: 5.1727794e+10, z: 4.5904e-41, w: 3.4e-44}
+  m_BoundingSphereOverride: {x: 6e-45, y: 1.0486e-41, z: 1.02e-43, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -2980,80 +2980,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8811143554816396495, guid: 476ed374b798a25eaa71f2832f3f09cc,
         type: 3}
-      propertyPath: encounterPlan.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8811143554816396495, guid: 476ed374b798a25eaa71f2832f3f09cc,
-        type: 3}
-      propertyPath: encounterPlan.Array.data[0].enemyPrefab
-      value: 
-      objectReference: {fileID: 3209974283754741971, guid: 2080287c38b2f4405b7d1779ee04f269,
-        type: 3}
-    - target: {fileID: 8811143554816396495, guid: 476ed374b798a25eaa71f2832f3f09cc,
-        type: 3}
-      propertyPath: encounterPlan.Array.data[1].enemyPrefab
-      value: 
-      objectReference: {fileID: 6040207548545116494, guid: 6d95eef1c1b7b4a30b99c41ba6f80d68,
-        type: 3}
-    - target: {fileID: 8811143554816396495, guid: 476ed374b798a25eaa71f2832f3f09cc,
-        type: 3}
-      propertyPath: encounterPlan.Array.data[2].enemyPrefab
-      value: 
-      objectReference: {fileID: 5549860975341217743, guid: 8b1e9c300f620429f9c33008b2f0639a,
-        type: 3}
-    - target: {fileID: 8811143554816396495, guid: 476ed374b798a25eaa71f2832f3f09cc,
-        type: 3}
-      propertyPath: encounterPlan.Array.data[3].enemyPrefab
-      value: 
-      objectReference: {fileID: 6446542571443635100, guid: 0d04b9db7941e4514a048401088edaa5,
-        type: 3}
-    - target: {fileID: 8811143554816396495, guid: 476ed374b798a25eaa71f2832f3f09cc,
-        type: 3}
-      propertyPath: encounterPlan.Array.data[1].thresholds.evade
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8811143554816396495, guid: 476ed374b798a25eaa71f2832f3f09cc,
-        type: 3}
-      propertyPath: encounterPlan.Array.data[2].thresholds.evade
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8811143554816396495, guid: 476ed374b798a25eaa71f2832f3f09cc,
-        type: 3}
-      propertyPath: encounterPlan.Array.data[3].thresholds.evade
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8811143554816396495, guid: 476ed374b798a25eaa71f2832f3f09cc,
-        type: 3}
-      propertyPath: encounterPlan.Array.data[1].thresholds.combat
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8811143554816396495, guid: 476ed374b798a25eaa71f2832f3f09cc,
-        type: 3}
-      propertyPath: encounterPlan.Array.data[1].thresholds.search
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8811143554816396495, guid: 476ed374b798a25eaa71f2832f3f09cc,
-        type: 3}
-      propertyPath: encounterPlan.Array.data[2].thresholds.combat
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8811143554816396495, guid: 476ed374b798a25eaa71f2832f3f09cc,
-        type: 3}
-      propertyPath: encounterPlan.Array.data[2].thresholds.search
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8811143554816396495, guid: 476ed374b798a25eaa71f2832f3f09cc,
-        type: 3}
-      propertyPath: encounterPlan.Array.data[3].thresholds.combat
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8811143554816396495, guid: 476ed374b798a25eaa71f2832f3f09cc,
-        type: 3}
-      propertyPath: encounterPlan.Array.data[3].thresholds.search
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8811143554816396495, guid: 476ed374b798a25eaa71f2832f3f09cc,
-        type: 3}
       propertyPath: OnEncounterStart.m_PersistentCalls.m_Calls.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -3356,7 +3282,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1.02e-43, y: 0, z: 0, w: 5.1727794e+10}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -8981,7 +8907,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 834148772, guid: fdf02c53e21660343a32766799de3671, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 112.5
       objectReference: {fileID: 0}
     - target: {fileID: 834148772, guid: fdf02c53e21660343a32766799de3671, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -9005,7 +8931,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 843854625, guid: fdf02c53e21660343a32766799de3671, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 112.5
       objectReference: {fileID: 0}
     - target: {fileID: 843854625, guid: fdf02c53e21660343a32766799de3671, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -9045,7 +8971,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1728650425, guid: fdf02c53e21660343a32766799de3671, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 112.5
       objectReference: {fileID: 0}
     - target: {fileID: 1728650425, guid: fdf02c53e21660343a32766799de3671, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -9085,7 +9011,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2114971525, guid: fdf02c53e21660343a32766799de3671, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 112.5
       objectReference: {fileID: 0}
     - target: {fileID: 2114971525, guid: fdf02c53e21660343a32766799de3671, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -9570,7 +9496,7 @@ PrefabInstance:
     - target: {fileID: 2235989837777510922, guid: fdf02c53e21660343a32766799de3671,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 417.5
       objectReference: {fileID: 0}
     - target: {fileID: 2235989837777510922, guid: fdf02c53e21660343a32766799de3671,
         type: 3}
@@ -9915,7 +9841,7 @@ PrefabInstance:
     - target: {fileID: 6641932884319490941, guid: fdf02c53e21660343a32766799de3671,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 265
       objectReference: {fileID: 0}
     - target: {fileID: 6641932884319490941, guid: fdf02c53e21660343a32766799de3671,
         type: 3}
