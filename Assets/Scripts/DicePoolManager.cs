@@ -22,6 +22,10 @@ public class DicePoolManager : MonoBehaviour
     void Start()
     {
         GetComponentsInChildren<Dice>(diceInPool);
+        diceRollers = new List<DiceRoller>();
+        foreach (Dice dice in diceInPool) {
+            diceRollers.Add(dice.diceBody.GetComponent<DiceRoller>());
+        }
         GetComponentsInChildren<DiceRoller>(diceRollers);
     }
 
