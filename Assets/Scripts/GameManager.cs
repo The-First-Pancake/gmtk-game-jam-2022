@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 
 
     [Header("Dice Resources")]
+    public Transform diceHomePoint;
     public GameObject pipPrefab;
     public List<diceSizePrefabs> dicePrefabsBySize = new List<diceSizePrefabs>();
     public List<Pip> pips = new List<Pip>();

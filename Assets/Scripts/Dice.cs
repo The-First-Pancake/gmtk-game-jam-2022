@@ -93,8 +93,8 @@ public class Dice : MonoBehaviour
         face.dice = this;
         face.socket = socket;
         if (!faces.Contains(face)) { faces.Add(face); }
-
     }
+
 }
 
 [Serializable]
