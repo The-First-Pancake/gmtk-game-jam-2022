@@ -23,14 +23,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 563492940897716866}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 14.85, y: 5.18, z: -57.57}
+  m_LocalRotation: {x: 0.5, y: 0, z: 0, w: 0.8660254}
+  m_LocalPosition: {x: 15.21, y: 5.125, z: -58.11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7092283794792720700}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 60, y: 0, z: 0}
 --- !u!1 &7092283794792720691
 GameObject:
   m_ObjectHideFlags: 0
@@ -247,7 +247,19 @@ MonoBehaviour:
   dicePoolManager: {fileID: 7092283794899147856}
   onDiceModComplete:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: CombatManager, Assembly-CSharp
+        m_MethodName: EndSelect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   searchFaceRewardPt: {fileID: 77991520339766438}
 --- !u!114 &8014785623702079195
 MonoBehaviour:
@@ -261,3 +273,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8c462e762bc3cb42b92e66d0d3f4466, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dicePrefab: {fileID: 8840269280469050915, guid: c372b971e3438ea4ebd4367940136897,
+    type: 3}
+  starting_Dice:
+  - _faces:
+    - faceType: 0
+      _pips: 03000000
+    - faceType: 0
+      _pips: 0400000004000000
+  - _faces:
+    - faceType: 0
+      _pips: 05000000
+    - faceType: 0
+      _pips: 0300000003000000
+    - faceType: 0
+      _pips: 040000000400000004000000
+  - _faces:
+    - faceType: 0
+      _pips: 0500000005000000
+    - faceType: 0
+      _pips: 030000000300000003000000
+    - faceType: 0
+      _pips: 04000000040000000400000004000000
+    - faceType: 0
+      _pips: 02000000
+  - _faces: []
