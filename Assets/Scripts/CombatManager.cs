@@ -8,7 +8,10 @@ public enum CombatState {
     NOT_IN_COMBAT,
     ROLLING,
     WAIT_FOR_SETTLING,
+    CHECK_SEARCH,
+    WAIT_FOR_SEARCH_SELECT,
     RESOLUTION,
+    WAIT_FOR_RESOLUTION_SELECT,
     END_COMBAT,
 }
 
@@ -42,6 +45,7 @@ public class CombatManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        PoolResults dicePoolResults;
         switch (state)
         {
             case CombatState.NOT_IN_COMBAT:
@@ -64,30 +68,42 @@ public class CombatManager : MonoBehaviour
                     foreach (DiceRoller diceRoller in GameManager.instance.player.dicePool.diceRollers) {
                         diceRoller.SetEnabled(false);
                     }
-                    state = CombatState.RESOLUTION;
+                    state = CombatState.CHECK_SEARCH;
                 }
                 break;
-            case CombatState.RESOLUTION:
-                PoolResults dicePoolResults = GameManager.instance.player.dicePool.GetPoolResults();
+            case CombatState.CHECK_SEARCH:
                 // Check loot
+                dicePoolResults = GameManager.instance.player.dicePool.GetPoolResults();
                 if (dicePoolResults.pips[((int)PipType.Search)] >= combatThresholds.search) {
                     Debug.Log("Got Lunch");
                     OnSearch.Invoke();
+                    state = CombatState.WAIT_FOR_SEARCH_SELECT;
+                } else {
+                    state = CombatState.RESOLUTION;
                 }
+                break;
+            case CombatState.WAIT_FOR_SEARCH_SELECT:
+                break;
+            case CombatState.RESOLUTION:
+                dicePoolResults = GameManager.instance.player.dicePool.GetPoolResults();
                 if (dicePoolResults.best_combat >= combatThresholds.combat) {
                     Debug.Log("Killed Alien");
                     OnKillAlien.Invoke();
                     // Call victory reward / kill animation function
+                    state = CombatState.WAIT_FOR_RESOLUTION_SELECT;
                 } else if (dicePoolResults.pips[((int)PipType.Evade)] >= combatThresholds.evade) {
                     Debug.Log("Snuck Past");
                     OnSneak.Invoke();
                     // Call sneak animation
+                    state = CombatState.END_COMBAT;
                 } else {
                     Debug.Log("Got Hit");
                     OnPlayerHit.Invoke();
                     // Call harm
+                    state = CombatState.WAIT_FOR_RESOLUTION_SELECT;
                 }
-                state = CombatState.END_COMBAT;
+                break;
+            case CombatState.WAIT_FOR_RESOLUTION_SELECT:
                 break;
             case CombatState.END_COMBAT:
                 // Nothing to do yet, but I bet there will be
@@ -127,6 +143,14 @@ public class CombatManager : MonoBehaviour
                 diceRoller.SetEnabled(false);
             }
             state = CombatState.RESOLUTION;
+        }
+    }
+
+    public void EndSelect() {
+        if (state == CombatState.WAIT_FOR_SEARCH_SELECT) {
+            state = CombatState.RESOLUTION;
+        } else if (state == CombatState.WAIT_FOR_RESOLUTION_SELECT) {
+            state = CombatState.END_COMBAT;
         }
     }
 }
