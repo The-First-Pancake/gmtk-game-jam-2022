@@ -9,11 +9,13 @@ public class Player : MonoBehaviour
     public int health = 5;
     public DicePoolManager dicePool;
     public int deathScene;
+    private AudioSource audio;
     // Start is called before the first frame update
     void Start()
     {
         health = maxHealth;
         dicePool = GetComponentInChildren<DicePoolManager>();
+        audio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -23,6 +25,7 @@ public class Player : MonoBehaviour
     }
 
     public void Damage() {
+        audio.Play();
         health--;
         if (health <= 0) {
             Die();
