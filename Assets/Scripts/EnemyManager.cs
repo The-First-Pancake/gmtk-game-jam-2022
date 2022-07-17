@@ -26,13 +26,11 @@ public class EnemyManager : MonoBehaviour
     public void KillEnemy() {
         Destroy(Enemy);
         DeathParticlesSystem.Play();
-        Debug.Log("Invoking NewEnemy()");
-        Invoke("NewEnemy", 2f);
     }
 
     public void NewEnemy() {
         Debug.Log("Instantiaing new enemy");
-        Instantiate(EnemyPrefab, GameScene.transform);
+        Instantiate(GameManager.instance.encounterPlanner.currentEncounter.enemyPrefab, GameScene.transform);
         Enemy = GameObject.FindGameObjectWithTag("Enemy");
         OnNewEnemy.Invoke();
     }

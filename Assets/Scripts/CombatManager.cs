@@ -106,7 +106,7 @@ public class CombatManager : MonoBehaviour
         StartCombat(testCombat);
     }
 
-    public void StartCombat(CombatThresholds thresholds) {
+    private void StartCombat(CombatThresholds thresholds) {
         if (state == CombatState.NOT_IN_COMBAT) {
             combatThresholds = thresholds;
             numRollsLeft = numRerollsAllowed;
@@ -115,6 +115,10 @@ public class CombatManager : MonoBehaviour
             }
             state = CombatState.ROLLING;
         }
+    }
+
+    public void StartCombatFromEncounter() {
+        StartCombat(GameManager.instance.encounterPlanner.currentEncounter.thresholds);
     }
 
     public void EndCombat() {
