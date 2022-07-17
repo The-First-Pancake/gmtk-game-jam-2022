@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public Player player;
     
     public CombatManager combatManager;
+    public EncounterPlanner encounterPlanner;
     public static GameManager instance;
 
 
