@@ -16,6 +16,7 @@ public class EnemyManager : MonoBehaviour
     public UnityEvent OnNewEnemy;
     public Transform cam;
     private bool PlayerLost = false;
+    private bool PlayerDidEvade = false;
     public GameObject Flare;
 
 
@@ -77,8 +78,11 @@ public class EnemyManager : MonoBehaviour
             {
                 flareLight.enabled = true;
             }
-
-            Invoke("EndEvade", 1f);
+            
+            if (PlayerDidEvade) {
+                Invoke("EndEvade", 1f);
+            }
+            PlayerDidEvade = false;
         }
     }
 
@@ -97,6 +101,7 @@ public class EnemyManager : MonoBehaviour
         {
             flareLight.enabled = false;
         }
+        PlayerDidEvade = true;
         Invoke("PlayerLose", 1.5f);
     }
 
