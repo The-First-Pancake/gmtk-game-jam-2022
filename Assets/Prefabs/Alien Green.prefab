@@ -207,7 +207,7 @@ GameObject:
   - component: {fileID: 2866486419233667689}
   - component: {fileID: 2327647746540465260}
   m_Layer: 0
-  m_Name: Alien
+  m_Name: Alien Green
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
