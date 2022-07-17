@@ -109,7 +109,7 @@ public class Dice : MonoBehaviour
         Face existingFace = socket.GetComponentInChildren<Face>();
         if (existingFace)
         {
-            RemoveFace(existingFace)
+            RemoveFace(existingFace);
         }
         face.transform.parent = socket;
         face.transform.position = socket.position;
