@@ -15,3 +15,5 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: a34b5ad0cfca0fc4bbff794ddc54783b, type: 3}
   color: {r: 0.88615304, g: 0.8867924, b: 0, a: 1}
   type: 2
+  rarity: 8
+  abundance: {x: 1, y: 1}

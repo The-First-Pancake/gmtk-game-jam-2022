@@ -6,6 +6,11 @@ using UnityEngine;
 [Serializable]
 public class PoolResults {
     public int [] pips = new int[Enum.GetNames(typeof(PipType)).Length];
+    public int gun_combat;
+    public int lightning_combat;
+    public int fire_combat;
+
+    public int best_combat;
 }
 
 public class DicePoolManager : MonoBehaviour
@@ -47,6 +52,12 @@ public class DicePoolManager : MonoBehaviour
                 }
             }
         }
+        poolResults.gun_combat = poolResults.pips[((int)PipType.Bullet)] * poolResults.pips[((int)PipType.Gun)];
+        poolResults.lightning_combat = poolResults.pips[((int)PipType.Energy)] * poolResults.pips[((int)PipType.Energy)];
+        poolResults.fire_combat = poolResults.pips[((int)PipType.Fire)];
+
+        poolResults.best_combat = Math.Max(poolResults.gun_combat, Math.Max(poolResults.lightning_combat, poolResults.fire_combat));
+
         return poolResults;
     }
 }

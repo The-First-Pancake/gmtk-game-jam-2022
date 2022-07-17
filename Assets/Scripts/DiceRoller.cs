@@ -76,7 +76,7 @@ public class DiceRoller : MonoBehaviour
         return false;
     }
 
-    bool CheckSettled() {
+    public bool CheckSettled() {
         debounceCounter = (debounceCounter + 1) % averagedOver;
         debouncedVelocity += rb.velocity.magnitude;
         if (debounceCounter == (averagedOver - 1)) {
@@ -118,5 +118,9 @@ public class DiceRoller : MonoBehaviour
         } else {
             diceState = DiceState.DISABLED;
         }
+    }
+
+    public bool IsSettled() {
+        return diceState ==  DiceState.SETTLED;
     }
 }
