@@ -189,6 +189,7 @@ GameObject:
   - component: {fileID: 7092283794899147863}
   - component: {fileID: 7092283794899147856}
   - component: {fileID: 3504322381446511366}
+  - component: {fileID: 8014785623702079195}
   m_Layer: 0
   m_Name: DicePool
   m_TagString: Untagged
@@ -248,3 +249,15 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   searchFaceRewardPt: {fileID: 77991520339766438}
+--- !u!114 &8014785623702079195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7092283794899147862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8c462e762bc3cb42b92e66d0d3f4466, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

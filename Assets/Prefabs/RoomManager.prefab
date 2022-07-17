@@ -577,9 +577,87 @@ MonoBehaviour:
   encounterPlan:
   - thresholds:
       combat: 4
-      evade: 1
+      evade: 4
       search: 1
-    enemyPrefab: {fileID: 0}
+    enemyPrefab: {fileID: 5549860975341217743, guid: 8b1e9c300f620429f9c33008b2f0639a,
+      type: 3}
+    hasDiceReward: 0
+  - thresholds:
+      combat: 3
+      evade: 3
+      search: 3
+    enemyPrefab: {fileID: 5549860975341217743, guid: 8b1e9c300f620429f9c33008b2f0639a,
+      type: 3}
+    hasDiceReward: 0
+  - thresholds:
+      combat: 3
+      evade: 5
+      search: 2
+    enemyPrefab: {fileID: 5549860975341217743, guid: 8b1e9c300f620429f9c33008b2f0639a,
+      type: 3}
+    hasDiceReward: 0
+  - thresholds:
+      combat: 5
+      evade: 3
+      search: 2
+    enemyPrefab: {fileID: 5549860975341217743, guid: 8b1e9c300f620429f9c33008b2f0639a,
+      type: 3}
+    hasDiceReward: 0
+  - thresholds:
+      combat: 8
+      evade: 6
+      search: 3
+    enemyPrefab: {fileID: 3209974283754741971, guid: 2080287c38b2f4405b7d1779ee04f269,
+      type: 3}
+    hasDiceReward: 0
+  - thresholds:
+      combat: 5
+      evade: 5
+      search: 3
+    enemyPrefab: {fileID: 5549860975341217743, guid: 8b1e9c300f620429f9c33008b2f0639a,
+      type: 3}
+    hasDiceReward: 0
+  - thresholds:
+      combat: 8
+      evade: 6
+      search: 4
+    enemyPrefab: {fileID: 3209974283754741971, guid: 2080287c38b2f4405b7d1779ee04f269,
+      type: 3}
+    hasDiceReward: 0
+  - thresholds:
+      combat: 8
+      evade: 7
+      search: 3
+    enemyPrefab: {fileID: 3209974283754741971, guid: 2080287c38b2f4405b7d1779ee04f269,
+      type: 3}
+    hasDiceReward: 0
+  - thresholds:
+      combat: 7
+      evade: 9
+      search: 4
+    enemyPrefab: {fileID: 3209974283754741971, guid: 2080287c38b2f4405b7d1779ee04f269,
+      type: 3}
+    hasDiceReward: 0
+  - thresholds:
+      combat: 12
+      evade: 10
+      search: 4
+    enemyPrefab: {fileID: 6040207548545116494, guid: 6d95eef1c1b7b4a30b99c41ba6f80d68,
+      type: 3}
+    hasDiceReward: 0
+  - thresholds:
+      combat: 13
+      evade: 9
+      search: 4
+    enemyPrefab: {fileID: 6040207548545116494, guid: 6d95eef1c1b7b4a30b99c41ba6f80d68,
+      type: 3}
+    hasDiceReward: 0
+  - thresholds:
+      combat: 30
+      evade: 99
+      search: 99
+    enemyPrefab: {fileID: 6446542571443635100, guid: 0d04b9db7941e4514a048401088edaa5,
+      type: 3}
     hasDiceReward: 0
   currentEncounter:
     thresholds:
