@@ -35,8 +35,7 @@ public class CombatManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        enemyDeathParticle = GameObject.FindGameObjectsWithTag("Enemy Death Particle")[0].GetComponent<ParticleSystem>();
+        
     }
 
     // Update is called once per frame

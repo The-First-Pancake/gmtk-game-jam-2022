@@ -18,14 +18,14 @@ public class EnemyManager : MonoBehaviour
         DeathParticlesSystem = DeathParticles.GetComponent<ParticleSystem>();
     }
 
-    void KillEnemy() {
+    public void KillEnemy() {
         Destroy(Enemy);
         DeathParticlesSystem.Play();
         Debug.Log("Invoking NewEnemy()");
         Invoke("NewEnemy", 2f);
     }
 
-    void NewEnemy() {
+    public void NewEnemy() {
         Debug.Log("Instantiaing new enemy");
         Instantiate(EnemyPrefab, new Vector3(260, 9, 100), Quaternion.Euler(0, -90, 0));
     }
