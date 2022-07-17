@@ -19,7 +19,7 @@ public class Dice : MonoBehaviour
     public void Update()
     {
         //Check highlights
-        if (diceBody.GetComponent<DiceRoller>().CheckSettled())
+        if (diceBody.GetComponent<DiceRoller>().IsSettled())
         { 
             Face upFace = getUpFace();
             if (upFace)
