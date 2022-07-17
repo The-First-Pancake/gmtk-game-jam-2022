@@ -1,20 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EnemyManager : MonoBehaviour
 {
 
     private GameObject Enemy;
-    public GameObject DeathParticles;
+    private GameObject DeathParticles;
     public GameObject EnemyPrefab;
+    public GameObject GameScene;
     private ParticleSystem DeathParticlesSystem;
+    public UnityEvent OnNewEnemy;
+
 
 
     // Start is called before the first frame update
     void Start()
     {
         Enemy = GameObject.FindGameObjectWithTag("Enemy");
+        DeathParticles = GameObject.FindGameObjectWithTag("Enemy Death Particle");
         DeathParticlesSystem = DeathParticles.GetComponent<ParticleSystem>();
     }
 
@@ -27,7 +32,9 @@ public class EnemyManager : MonoBehaviour
 
     public void NewEnemy() {
         Debug.Log("Instantiaing new enemy");
-        Instantiate(EnemyPrefab, new Vector3(260, 9, 100), Quaternion.Euler(0, -90, 0));
+        Instantiate(EnemyPrefab, GameScene.transform);
+        Enemy = GameObject.FindGameObjectWithTag("Enemy");
+        OnNewEnemy.Invoke();
     }
 
     // Update is called once per frame
