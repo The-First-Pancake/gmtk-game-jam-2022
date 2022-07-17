@@ -7,17 +7,14 @@ public class Dice : MonoBehaviour
 {
     
     public int dieSize = 6;
-    private List<Transform> sockets = new List<Transform>();
+    public List<Transform> sockets = new List<Transform>();
     public List<Face> faces;
     public GameObject diceBody;
     public void Start()
     {
         generateTestDie();
     }
-    public void Update()
-    {
-        
-    }
+
     [ContextMenu("Generate Model")]
     public void generateDieBody()
     {
@@ -69,7 +66,6 @@ public class Dice : MonoBehaviour
             float dot = Vector3.Dot(-socket.forward, Vector3.up); //close to 1 if parallel, clost to -1 if antiparallel
             if (dot > bestDot) { bestSocket = socket ; bestDot = dot; }
         }
-        Debug.Log(bestSocket);
         return faces.Find(x => x.socket == bestSocket);
     }
     public void ChangeSize(bool increase)
@@ -97,8 +93,8 @@ public class Dice : MonoBehaviour
         face.dice = this;
         face.socket = socket;
         if (!faces.Contains(face)) { faces.Add(face); }
-
     }
+
 }
 
 [Serializable]

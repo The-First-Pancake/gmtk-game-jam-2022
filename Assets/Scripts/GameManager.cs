@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
 
 
     [Header("Dice Resources")]
+    public Transform diceHomePoint;
     public GameObject pipPrefab;
     public List<diceSizePrefabs> dicePrefabsBySize = new List<diceSizePrefabs>();
     public List<Pip> pips = new List<Pip>();
@@ -47,7 +48,6 @@ public class GameManager : MonoBehaviour
     }
    public Pip getPipOfType(PipType type)
     {
-        Debug.Log(pips.Find(x => x.type == type));
         return pips.Find(x => x.type == type);
     }
     public GameObject getFacePrefab_OfSize(int size)
