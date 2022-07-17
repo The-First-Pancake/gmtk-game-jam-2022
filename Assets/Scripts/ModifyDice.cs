@@ -15,6 +15,7 @@ public class ModifyDice : MonoBehaviour
     void Start()
     {
         zoomPoint = Camera.main.transform.Find("DiceZoomPoint");
+        ChooseFromFaces();
     }
 
 
