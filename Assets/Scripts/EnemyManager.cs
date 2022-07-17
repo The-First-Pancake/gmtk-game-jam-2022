@@ -10,9 +10,13 @@ public class EnemyManager : MonoBehaviour
     private GameObject DeathParticles;
     public GameObject EnemyPrefab;
     public GameObject GameScene;
-    public GameObject EnemySceneMarker;
+    public GameObject EnemySceneMarkerIn;
+    public GameObject EnemySceneMarkerOut;
     private ParticleSystem DeathParticlesSystem;
     public UnityEvent OnNewEnemy;
+    public Transform cam;
+    private bool PlayerLost = false;
+    public GameObject Flare;
 
 
 
@@ -37,15 +41,70 @@ public class EnemyManager : MonoBehaviour
     }
 
     private void EnemySlideIntoView() {
-        if (Enemy != null && (Enemy.transform.position.x > EnemySceneMarker.transform.position.x)) {
-            float speedOffset = (Enemy.transform.position.x / EnemySceneMarker.transform.position.x) * 0.1f;
+        if (Enemy != null && (Enemy.transform.position.x > EnemySceneMarkerIn.transform.position.x)) {
+            float speedOffset = (Enemy.transform.position.x / EnemySceneMarkerIn.transform.position.x) * 0.1f;
             Enemy.transform.Translate(Vector3.forward * speedOffset);
         }
+    }
+
+    private void EnemyRotateAway() {
+        if (cam.InverseTransformPoint(Enemy.transform.position).z > -100 && cam.InverseTransformPoint(Enemy.transform.position).z <= 100) {
+            Enemy.transform.Translate(new Vector3(0, 0, -1), Space.Self);
+        }
+
+        if (Enemy.transform.rotation.y < 90) {
+            Enemy.transform.Rotate(Vector3.up, 1f);
+        }
+    }
+
+    private void EnemySlideOutView() {
+        if (Enemy != null && (Enemy.transform.position.x < EnemySceneMarkerOut.transform.position.x)) {
+            float speedOffset = (EnemySceneMarkerOut.transform.position.x / Enemy.transform.position.x) * 0.1f;
+            Enemy.transform.Translate(Vector3.back * speedOffset);
+        } else if (Enemy != null && (Enemy.transform.position.x >= EnemySceneMarkerOut.transform.position.x)) {
+            Destroy(Enemy);
+            PlayerLost = false;
+            Light[] flareLights = Flare.GetComponentsInChildren<Light>();
+            ParticleSystem[] flareParticles = Flare.GetComponentsInChildren<ParticleSystem>();
+            foreach (ParticleSystem flareParticle in flareParticles)
+            {
+                flareParticle.Play();
+            }
+            foreach (Light flareLight in flareLights)
+            {
+                flareLight.enabled = true;
+            }
+            GameManager.instance.combatManager.EndSelect();
+        }
+    }
+
+    public void PlayerEvade() {
+        Light[] flareLights = Flare.GetComponentsInChildren<Light>();
+        ParticleSystem[] flareParticles = Flare.GetComponentsInChildren<ParticleSystem>();
+        foreach (ParticleSystem flareParticle in flareParticles)
+        {
+            flareParticle.Stop();
+        }
+        foreach (Light flareLight in flareLights)
+        {
+            flareLight.enabled = false;
+        }
+        Invoke("PlayerLose", 2.5f);
+    }
+
+    public void PlayerLose() {
+        Debug.Log("PlayerLose");
+        PlayerLost = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        EnemySlideIntoView();
+        if (PlayerLost){
+            // EnemyRotateAway();
+            EnemySlideOutView();
+        } else {
+            EnemySlideIntoView();
+        }
     }
 }

@@ -101,7 +101,7 @@ public class CombatManager : MonoBehaviour
                     Debug.Log("Snuck Past");
                     OnSneak.Invoke();
                     // Call sneak animation
-                    state = CombatState.END_COMBAT;
+                    state = CombatState.WAIT_FOR_RESOLUTION_SELECT;
                 } else {
                     Debug.Log("Got Hit");
                     OnPlayerHit.Invoke();
