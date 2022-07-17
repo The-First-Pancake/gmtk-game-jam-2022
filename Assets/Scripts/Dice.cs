@@ -65,16 +65,16 @@ public class Dice : MonoBehaviour
         face1.addPip(PipType.Bullet);
         face1.addPip(PipType.Bullet);
         face1.configureFace(FaceType.pip);
-        attatchFace(face1, firstOpenSocket());
+        AttatchFace(face1, firstOpenSocket());
 
         Face face2 = Instantiate(GameManager.instance.getFacePrefab_OfSize(dieSize)).GetComponent<Face>();
         face2.addPip(PipType.Energy);
         face2.addPip(PipType.Energy);
         face2.configureFace(FaceType.pip);
-        attatchFace(face2, firstOpenSocket());
+        AttatchFace(face2, firstOpenSocket());
 
         Face face3 = Instantiate(GameManager.instance.getFacePrefab_OfSize(dieSize)).GetComponent<Face>();
-        attatchFace(face3, firstOpenSocket());
+        AttatchFace(face3, firstOpenSocket());
         face3.configureFace(FaceType.isopod);
     }
 
@@ -104,9 +104,13 @@ public class Dice : MonoBehaviour
         }
         return null;
     }
-    public void attatchFace(Face face, Transform socket)
+    public void AttatchFace(Face face, Transform socket)
     {
-        //TODO handle if socket is already filled
+        Face existingFace = socket.GetComponentInChildren<Face>();
+        if (existingFace)
+        {
+            RemoveFace(existingFace)
+        }
         face.transform.parent = socket;
         face.transform.position = socket.position;
         face.transform.rotation = socket.rotation;
@@ -114,6 +118,11 @@ public class Dice : MonoBehaviour
         face.dice = this;
         face.socket = socket;
         if (!faces.Contains(face)) { faces.Add(face); }
+    }
+    public void RemoveFace(Face face)
+    {
+        faces.Remove(face);
+        DestroyImmediate(face.gameObject);
     }
     public void sendHome()
     {

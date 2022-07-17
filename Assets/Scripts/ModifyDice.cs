@@ -96,7 +96,7 @@ public class ModifyDice : MonoBehaviour
             if (dice.sockets.Contains(chosenSocket))
             { chosenDice = dice; }
         }
-        chosenDice.attatchFace(chosenFace, chosenSocket);
+        chosenDice.AttatchFace(chosenFace, chosenSocket);
 
         StartCoroutine(ShowOffTransform(chosenDice.diceBody.transform, 4));
         yield return new WaitForSeconds(3f);
@@ -126,7 +126,7 @@ public class ModifyDice : MonoBehaviour
             if (dice.sockets.Contains(chosenSocket))
             { chosenDice = dice; }
         }
-        chosenDice.attatchFace(face, chosenSocket);
+        chosenDice.AttatchFace(face, chosenSocket);
 
         StartCoroutine(ShowOffTransform(chosenDice.diceBody.transform, 4));
         yield return new WaitForSeconds(3f);
