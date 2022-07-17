@@ -114,6 +114,7 @@ public class DiceRoller : MonoBehaviour
 
     public void SetEnabled(bool enabled) {
         if (enabled) {
+            rb.isKinematic = false;
             diceState = DiceState.PICKED_UP;
         } else {
             diceState = DiceState.DISABLED;
