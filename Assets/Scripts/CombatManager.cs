@@ -48,7 +48,7 @@ public class CombatManager : MonoBehaviour
             case CombatState.WAIT_FOR_SETTLING:
                 foreach (DiceRoller diceRoller in GameManager.instance.player.dicePool.diceRollers) {
                     if (!diceRoller.IsSettled()) {
-                        break;
+                        return;
                     }
                 }
                 if (numRollsLeft > 0) {
