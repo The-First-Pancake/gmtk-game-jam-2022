@@ -5,17 +5,22 @@ using UnityEngine;
 public class ModifyDice : MonoBehaviour
 {
     private Transform zoomPoint;
+    private Vector3 faceHoldPoint = new Vector3(0, .5f, -.5f);
+
+    float objectSlideSpeed = 15;
+    float distanceToOffscreen = 8;
 
     float objectSpacing = 2.5f;
     float dicerotateSpeed = 60;
     public DicePoolManager dicePoolManager;
-    Transform clickedSocket = null;
 
-    
+    private Vector3 theFuckOffZone = new Vector3(1000, 1000, 1000);
+
+
     void Start()
     {
         zoomPoint = Camera.main.transform.Find("DiceZoomPoint");
-        
+        StartCoroutine(AddFaceOfPlayersChoice());
     }
 
 
@@ -41,12 +46,10 @@ public class ModifyDice : MonoBehaviour
     {
         return Random.Range(Mathf.FloorToInt(pip.abundance.x), Mathf.FloorToInt(pip.abundance.y));
     }
-    public void ChooseFromFaces()
+    public List<Face> CreateSetOfFaces(int count = 3)
     {
-        int choices = 3;
         List<Face> faceOptions = new List<Face>();
-        List<Transform> faceOptionTransforms = new List<Transform>();
-        for (int i = 0; i < choices; i++)
+        for (int i = 0; i < count; i++)
         {
             Face newFace = Instantiate(GameManager.instance.getFacePrefab_OfSize(6)).GetComponent<Face>();
 
@@ -60,11 +63,8 @@ public class ModifyDice : MonoBehaviour
             newFace.configureFace(FaceType.pip);
 
             faceOptions.Add(newFace);
-            faceOptionTransforms.Add(newFace.transform);
-            newFace.transform.rotation = Quaternion.Euler(zoomPoint.transform.rotation.eulerAngles); 
         }
-
-        moveTransformsTo_ZoomPoint(faceOptionTransforms);
+        return faceOptions;
     }
 
 
@@ -77,77 +77,238 @@ public class ModifyDice : MonoBehaviour
         {
             float newX = startX + objectSpacing * i;
             objects[i].position = zoomPoint.position + new Vector3(newX, 0, 0);
+            objects[i].rotation = zoomPoint.rotation;
         }
     }
 
-    public IEnumerator SelectNewFace(System.Action<Transform> selectedSocket = null)
+    public IEnumerator AddFaceOfPlayersChoice()
     {
-        yield return null; //wait a frame in case this is happening right away (TODO remove this)
-        Face clickedFace = null;
-        yield return null;
-    }
+        Face chosenFace = null;
+        yield return SelectNewFace((face) => {chosenFace = face;});
 
-    public IEnumerator SelectDiceSocketFromPool(System.Action<Transform> selectedSocket = null)
-    {
-        yield return null; //wait a frame in case this is happening right away (TODO remove this)
-        clickedSocket = null;
-
+        Transform chosenSocket = null;
+        yield return SelectSocketFromDicePool((socket) => {chosenSocket = socket; });
         
-        //freeze dice
+        Dice chosenDice = null;
         foreach (Dice dice in dicePoolManager.diceInPool)
         {
-            
-            dice.diceBody.GetComponent<Rigidbody>().isKinematic = true;
-            dice.transform.rotation = Quaternion.Euler(45, 0, 45);
+            if (dice.sockets.Contains(chosenSocket))
+            { chosenDice = dice; }
+        }
+        chosenDice.AttatchFace(chosenFace, chosenSocket);
+
+        StartCoroutine(ShowOffTransform(chosenDice.diceBody.transform, 4));
+        yield return new WaitForSeconds(3f);
+        yield return slideTransformAlong(chosenDice.diceBody.transform, Vector2.up * distanceToOffscreen);
+        chosenDice.sendHome();
+    }
+    public IEnumerator AddBugFace()
+    {
+        Face face = Instantiate(GameManager.instance.getFacePrefab_OfSize(6)).GetComponent<Face>();
+        face.configureFace(FaceType.isopod);
+        face.transform.position = zoomPoint.position + faceHoldPoint;
+        face.transform.rotation = zoomPoint.rotation;
+        face.SetHighlight(true);
+
+        StartCoroutine(ShowOffTransform(face.transform, 4));
+        yield return new WaitForSeconds(3f);
+        yield return slideTransformAlong(face.transform, Vector2.up * distanceToOffscreen);
+        StartCoroutine(slideTransformTo(face.transform, zoomPoint.TransformPoint(faceHoldPoint)));
+
+
+        Transform chosenSocket = null;
+        yield return SelectSocketFromDicePool((socket) => { chosenSocket = socket; });
+
+        Dice chosenDice = null;
+        foreach (Dice dice in dicePoolManager.diceInPool)
+        {
+            if (dice.sockets.Contains(chosenSocket))
+            { chosenDice = dice; }
+        }
+        chosenDice.AttatchFace(face, chosenSocket);
+
+        StartCoroutine(ShowOffTransform(chosenDice.diceBody.transform, 4));
+        yield return new WaitForSeconds(3f);
+        yield return slideTransformAlong(chosenDice.diceBody.transform, Vector2.up * distanceToOffscreen);
+        chosenDice.sendHome();
+    }
+    public IEnumerator ShowOffTransform(Transform transform, float time)
+    {
+        float endTime = Time.time + time;
+        transform.position = zoomPoint.position;
+
+        while (endTime > Time.time)
+        {
+            transform.Rotate(new Vector3(1, 1, Mathf.Sin(Time.time)) * dicerotateSpeed * Time.deltaTime);
+            yield return null;
+        }
+    }
+
+    public IEnumerator SelectNewFace(System.Action<Face> callback = null)
+    {
+        yield return null; //wait a frame in case this is happening right away (TODO remove this)
+        Face selectedFace = null;
+
+        List<Face> faces = CreateSetOfFaces();
+
+        //Allign all the transforms
+        List<Transform> faceTransformList = new List<Transform>();
+        foreach (Face face in faces) { faceTransformList.Add(face.transform);}
+        moveTransformsTo_ZoomPoint(faceTransformList);
+
+        foreach (Face face in faces)
+        {
+            face.SetHighlight(true);
         }
 
-        //make list of transforms so we can align them on the zoom point
-        List<Transform> diceTransformList = new List<Transform>();
-        foreach (Dice dice in dicePoolManager.diceInPool) { diceTransformList.Add(dice.transform); }
-
-        //Move all thee transforms where they need to go
-        moveTransformsTo_ZoomPoint(diceTransformList);
-
-
-
-        while (clickedSocket == null)
+        while (selectedFace == null)
         {
-            foreach (Dice dice in dicePoolManager.diceInPool)
-            {
-                dice.transform.Rotate(new Vector3(1, 1, Mathf.Sin(Time.time)) * dicerotateSpeed * Time.deltaTime);
-            }
-
             if (Input.GetMouseButtonDown(0))
             {
                 Ray ray = GameManager.instance.camera.ScreenPointToRay(Input.mousePosition);
                 RaycastHit[] raycastHits = Physics.RaycastAll(ray, 100f);
                 foreach (RaycastHit raycastHit in raycastHits)
                 {
-                    foreach (Dice dice in dicePoolManager.diceInPool)
+                    if (faceTransformList.Contains(raycastHit.transform))
                     {
-                        Transform hitsocket = dice.sockets.Find(x => raycastHit.transform == x);
-                        if (hitsocket)
-                        {
-                            clickedSocket = hitsocket;
-                            break;
-                        }
+                        selectedFace = raycastHit.transform.GetComponent<Face>();
                     }
-                    if (clickedSocket) { break; }
                 }
             }
             yield return null;
         }
 
-        foreach (Dice dice in dicePoolManager.diceInPool)
+
+        //wipe out unused faces
+        foreach (Face face in faces)
         {
-            dice.diceBody.GetComponent<Rigidbody>().isKinematic = false;
-            dice.transform.position = GameManager.instance.diceHomePoint.position;
-            yield return new WaitForSeconds(.1f);
+            if (face != selectedFace) { 
+                face.SetHighlight(false);
+                yield return new WaitForSeconds(.05f);
+                StartCoroutine(slideTransformAlong(face.transform, Vector2.down * distanceToOffscreen,true));
+                yield return new WaitForSeconds(.05f);
+            }
         }
 
-        Debug.Log(clickedSocket);
+        yield return new WaitForSeconds(.05f);
+        yield return slideTransformTo(selectedFace.transform, zoomPoint.TransformPoint(faceHoldPoint));
+        if (callback != null) { callback.Invoke(selectedFace); }
     }
 
-    
+    public IEnumerator SelectSocketFromDicePool(System.Action<Transform> callback = null)
+    {
+        yield return null; //wait a frame in case this is happening right away (TODO remove this)
+        Transform selectedSocket = null;
+
+        
+        //freeze dice
+        foreach (Dice dice in dicePoolManager.diceInPool)
+        { 
+            dice.diceBody.GetComponent<Rigidbody>().isKinematic = true;
+        }
+
+        //make list of transforms so we can align them on the zoom point
+        List<Transform> diceTransformList = new List<Transform>();
+        foreach (Dice dice in dicePoolManager.diceInPool) { diceTransformList.Add(dice.diceBody.transform); }
+
+        //Move all thee transforms where they need to go
+        moveTransformsTo_ZoomPoint(diceTransformList);
+
+        List<Transform> allSockets = new List<Transform>();
+        foreach (Dice dice in dicePoolManager.diceInPool)
+        {
+            allSockets.AddRange(dice.sockets);
+        }
+
+        while (selectedSocket == null) //do not proceed until a dice face is selected.
+        {
+            foreach (Dice dice in dicePoolManager.diceInPool)
+            {
+                dice.diceBody.transform.Rotate(new Vector3(1, 1, Mathf.Sin(Time.time)) * dicerotateSpeed * Time.deltaTime);
+            }
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                Ray ray = GameManager.instance.camera.ScreenPointToRay(Input.mousePosition);
+                RaycastHit[] raycastHits = Physics.RaycastAll(ray, 100f);
+                List<Transform> hitSockets = new List<Transform>();
+                foreach (RaycastHit raycastHit in raycastHits)
+                {
+                    if (allSockets.Contains(raycastHit.transform))
+                    {
+                        hitSockets.Add(raycastHit.transform);
+                    }
+                }
+                Transform closestSocket = null;
+                float closestSocketdist = 1000;
+                foreach(Transform socket in hitSockets)
+                {
+                    float socketDist = (socket.position - Camera.main.transform.position).magnitude;
+                    if (socketDist < closestSocketdist)
+                    { //closest socket so far
+                        closestSocket = socket;
+                        closestSocketdist = socketDist;
+                    }
+                }
+
+                //Filter out bug faces. They don't count as buildable faces
+                Face existingFace = closestSocket.GetComponentInChildren<Face>();
+                if (existingFace)
+                {
+                    if (existingFace.faceType == FaceType.isopod)
+                    {
+                        selectedSocket = null;
+                    }
+                    else
+                    {
+                        selectedSocket = closestSocket;
+                    }
+                }
+                else
+                {
+                    selectedSocket = closestSocket;
+                }
+            }
+            yield return null;
+        }
+
+        Dice selectedDice = null;
+        foreach (Dice dice in dicePoolManager.diceInPool)
+        {
+            if (!dice.sockets.Contains(selectedSocket))
+            {
+                yield return slideTransformAlong(dice.diceBody.transform, Vector2.down * distanceToOffscreen);
+                dice.sendHome();
+            }
+            else { selectedDice = dice;}
+        }
+
+        yield return slideTransformTo(selectedDice.diceBody.transform, zoomPoint.TransformPoint(Vector3.zero));
+        if (callback != null) { callback.Invoke(selectedSocket); }
+    }
+
+    IEnumerator slideTransformAlong(Transform transform, Vector3 path, bool destroyAfter = false)
+    {
+        Vector3 StartPos = transform.position;
+        while ((transform.position - StartPos).magnitude < path.magnitude)
+        {
+            transform.position += zoomPoint.TransformDirection(path.normalized) * Time.deltaTime * objectSlideSpeed;
+            yield return null;
+        }
+        if (destroyAfter) { Destroy(transform.gameObject); }
+    }
+
+    IEnumerator slideTransformTo(Transform transform, Vector3 destination, bool destroyAfter = false)
+    {
+        Vector3 StartPos = transform.position;
+        Vector3 path = destination - transform.position;
+        while ((StartPos - transform.position).magnitude < path.magnitude)
+        {
+            transform.Translate(path.normalized * Time.deltaTime * objectSlideSpeed, Space.World);
+            yield return null;
+        }
+        transform.position = destination;
+        if (destroyAfter) { Destroy(transform.gameObject); }
+    } 
 
 }

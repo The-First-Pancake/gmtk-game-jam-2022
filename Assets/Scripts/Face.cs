@@ -16,7 +16,7 @@ public class Face : MonoBehaviour
     public GameObject plate;
     public GameObject isopod;
 
-    private void Start()
+    private void Awake()
     {
         light = GetComponentInChildren<Light>();
     }
