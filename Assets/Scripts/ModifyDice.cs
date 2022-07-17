@@ -86,7 +86,6 @@ public class ModifyDice : MonoBehaviour
         Face chosenFace = null;
         yield return SelectNewFace((face) => {chosenFace = face;});
 
-        Debug.Log("done selecting face");
         Transform chosenSocket = null;
         yield return SelectSocketFromDicePool((socket) => {chosenSocket = socket; });
         
@@ -221,7 +220,7 @@ public class ModifyDice : MonoBehaviour
             allSockets.AddRange(dice.sockets);
         }
 
-        while (selectedSocket == null)
+        while (selectedSocket == null) //do not proceed until a dice face is selected.
         {
             foreach (Dice dice in dicePoolManager.diceInPool)
             {
@@ -237,7 +236,6 @@ public class ModifyDice : MonoBehaviour
                 {
                     if (allSockets.Contains(raycastHit.transform))
                     {
-                        Debug.Log(raycastHit.transform);
                         hitSockets.Add(raycastHit.transform);
                     }
                 }
@@ -253,7 +251,7 @@ public class ModifyDice : MonoBehaviour
                     }
                 }
 
-
+                //Filter out bug faces. They don't count as buildable faces
                 Face existingFace = closestSocket.GetComponentInChildren<Face>();
                 if (existingFace)
                 {
@@ -273,7 +271,6 @@ public class ModifyDice : MonoBehaviour
             }
             yield return null;
         }
-        Debug.Log(selectedSocket);
 
         Dice selectedDice = null;
         foreach (Dice dice in dicePoolManager.diceInPool)
