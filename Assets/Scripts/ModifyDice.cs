@@ -321,22 +321,25 @@ public class ModifyDice : MonoBehaviour
                     }
                 }
 
-                //Filter out bug faces. They don't count as buildable faces
-                Face existingFace = closestSocket.GetComponentInChildren<Face>();
-                if (existingFace)
+                if (closestSocket)
                 {
-                    if (existingFace.faceType == FaceType.isopod)
+                    //Filter out bug faces. They don't count as buildable faces
+                    Face existingFace = closestSocket.GetComponentInChildren<Face>();
+                    if (existingFace)
                     {
-                        selectedSocket = null;
+                        if (existingFace.faceType == FaceType.isopod)
+                        {
+                            selectedSocket = null;
+                        }
+                        else
+                        {
+                            selectedSocket = closestSocket;
+                        }
                     }
                     else
                     {
                         selectedSocket = closestSocket;
                     }
-                }
-                else
-                {
-                    selectedSocket = closestSocket;
                 }
             }
             yield return null;
