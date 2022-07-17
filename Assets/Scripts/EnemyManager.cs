@@ -16,6 +16,7 @@ public class EnemyManager : MonoBehaviour
     public UnityEvent OnNewEnemy;
     public Transform cam;
     private bool PlayerLost = false;
+    public GameObject Flare;
 
 
 
@@ -63,7 +64,32 @@ public class EnemyManager : MonoBehaviour
         } else if (Enemy != null && (Enemy.transform.position.x >= EnemySceneMarkerOut.transform.position.x)) {
             Destroy(Enemy);
             PlayerLost = false;
+            Light[] flareLights = Flare.GetComponentsInChildren<Light>();
+            ParticleSystem[] flareParticles = Flare.GetComponentsInChildren<ParticleSystem>();
+            foreach (ParticleSystem flareParticle in flareParticles)
+            {
+                flareParticle.Play();
+            }
+            foreach (Light flareLight in flareLights)
+            {
+                flareLight.enabled = true;
+            }
+            GameManager.instance.combatManager.EndSelect();
         }
+    }
+
+    public void PlayerEvade() {
+        Light[] flareLights = Flare.GetComponentsInChildren<Light>();
+        ParticleSystem[] flareParticles = Flare.GetComponentsInChildren<ParticleSystem>();
+        foreach (ParticleSystem flareParticle in flareParticles)
+        {
+            flareParticle.Stop();
+        }
+        foreach (Light flareLight in flareLights)
+        {
+            flareLight.enabled = false;
+        }
+        Invoke("PlayerLose", 2.5f);
     }
 
     public void PlayerLose() {
