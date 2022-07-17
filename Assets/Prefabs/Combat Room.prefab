@@ -3234,7 +3234,7 @@ GameObject:
   - component: {fileID: 3008984729009532117}
   - component: {fileID: 1975446080317917255}
   m_Layer: 0
-  m_Name: Text (TMP)
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3288,7 +3288,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: End Turn
+  m_text: Space To End Turn
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ba9496f72e64047d8ae02a40dd18f313, type: 2}
   m_sharedMaterial: {fileID: 5143082031056350809, guid: ba9496f72e64047d8ae02a40dd18f313,
@@ -3316,8 +3316,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60
-  m_fontSizeBase: 60
+  m_fontSize: 51.2
+  m_fontSizeBase: 51.2
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3883,7 +3883,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3110086607620733353}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: CombatManager, Assembly-CSharp
+        m_MethodName: EndCombat
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6667857718718708018
 GameObject:
   m_ObjectHideFlags: 0
@@ -6633,6 +6645,11 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1561477986010291459, guid: e4296bc3f762c4ea0954771587607826,
+        type: 3}
+      propertyPath: m_VersionIndex
+      value: 5105
+      objectReference: {fileID: 0}
     - target: {fileID: 1561477986010291463, guid: e4296bc3f762c4ea0954771587607826,
         type: 3}
       propertyPath: m_Mesh
@@ -6642,6 +6659,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1561477986161853449, guid: e4296bc3f762c4ea0954771587607826,
+        type: 3}
+      propertyPath: m_VersionIndex
+      value: 3389
       objectReference: {fileID: 0}
     - target: {fileID: 1561477986161853453, guid: e4296bc3f762c4ea0954771587607826,
         type: 3}
@@ -6667,6 +6689,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1561477986360225708, guid: e4296bc3f762c4ea0954771587607826,
+        type: 3}
+      propertyPath: m_VersionIndex
+      value: 8732
       objectReference: {fileID: 0}
     - target: {fileID: 6877676378317215125, guid: e4296bc3f762c4ea0954771587607826,
         type: 3}
@@ -6762,6 +6789,11 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1561477986010291459, guid: d5b4f4b4893b7492abe59f6ee1bb0ed6,
+        type: 3}
+      propertyPath: m_VersionIndex
+      value: 4970
+      objectReference: {fileID: 0}
     - target: {fileID: 1561477986010291463, guid: d5b4f4b4893b7492abe59f6ee1bb0ed6,
         type: 3}
       propertyPath: m_Mesh
@@ -6771,6 +6803,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1561477986161853449, guid: d5b4f4b4893b7492abe59f6ee1bb0ed6,
+        type: 3}
+      propertyPath: m_VersionIndex
+      value: 3389
       objectReference: {fileID: 0}
     - target: {fileID: 1561477986161853453, guid: d5b4f4b4893b7492abe59f6ee1bb0ed6,
         type: 3}
@@ -6796,6 +6833,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1561477986360225708, guid: d5b4f4b4893b7492abe59f6ee1bb0ed6,
+        type: 3}
+      propertyPath: m_VersionIndex
+      value: 8732
       objectReference: {fileID: 0}
     - target: {fileID: 6877676378317215125, guid: d5b4f4b4893b7492abe59f6ee1bb0ed6,
         type: 3}
