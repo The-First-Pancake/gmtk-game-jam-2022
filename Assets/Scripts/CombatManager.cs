@@ -142,7 +142,7 @@ public class CombatManager : MonoBehaviour
             foreach (DiceRoller diceRoller in GameManager.instance.player.dicePool.diceRollers) {
                 diceRoller.SetEnabled(false);
             }
-            state = CombatState.RESOLUTION;
+            state = CombatState.CHECK_SEARCH;
         }
     }
 
