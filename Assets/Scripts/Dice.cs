@@ -12,7 +12,9 @@ public class Dice : MonoBehaviour
     public GameObject diceBody;
 
     private Face highlightedFace = null;
-
+    public void Start()
+    {
+    }
     public void Update()
     {
         //Check highlights
