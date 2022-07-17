@@ -31,6 +31,7 @@ public class CombatManager : MonoBehaviour
     public UnityEvent OnKillAlien;
     public UnityEvent OnSneak;
     public UnityEvent OnPlayerHit;
+    public UnityEvent OnCombatEnd;
 
     // Start is called before the first frame update
     void Start()
@@ -90,6 +91,7 @@ public class CombatManager : MonoBehaviour
                 break;
             case CombatState.END_COMBAT:
                 // Nothing to do yet, but I bet there will be
+                OnCombatEnd.Invoke();
                 state = CombatState.NOT_IN_COMBAT;
                 break;
         }
