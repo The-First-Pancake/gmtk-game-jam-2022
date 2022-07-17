@@ -19,15 +19,13 @@ public class Dice : MonoBehaviour
     public void Update()
     {
 
-        Debug.Log(diceBody.GetComponent<DiceRoller>().CheckSettled());
         //Check highlights
         if (diceBody.GetComponent<DiceRoller>().CheckSettled())
         { 
             Face upFace = getUpFace();
             if (upFace)
             {
-                Debug.Log("on");
-                highlightedFace.SetHighlight(false); //clear old face if there was one (there shouldn't be but just in case
+                Debug.Log("on"); //clear old face if there was one (there shouldn't be but just in case
 
                 highlightedFace = upFace;
                 upFace.SetHighlight(true);
