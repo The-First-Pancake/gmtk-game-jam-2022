@@ -14,7 +14,7 @@ public class Dice : MonoBehaviour
     private Face highlightedFace = null;
     public void Start()
     {
-        generateTestDie();
+        
     }
     public void Update()
     {
