@@ -14,7 +14,6 @@ public class Dice : MonoBehaviour
     private Face highlightedFace = null;
     public void Start()
     {
-
     }
     public void Update()
     {
