@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 public class ModifyDice : MonoBehaviour
 {
+   
     private Transform zoomPoint;
     private Vector3 faceHoldPoint = new Vector3(0, 2, -1f);
 
@@ -16,20 +17,16 @@ public class ModifyDice : MonoBehaviour
 
     public UnityEvent onDiceModComplete;
 
-    private Vector3 theFuckOffZone = new Vector3(1000, 1000, 1000);
-
+    public Transform searchFaceRewardPt;
+    private Face searchRewardFace;
 
     void Start()
     {
         zoomPoint = Camera.main.transform.Find("DiceZoomPoint");
-
-        Face face1 = Instantiate(GameManager.instance.getFacePrefab_OfSize(6)).GetComponent<Face>();
+        GenerateSearchRewardFace();
     }
 
-    public void MakeSearchReqardFace()
-    {
-
-    }
+   
 
     public Pip chooseRandomPip()
     {
@@ -87,7 +84,24 @@ public class ModifyDice : MonoBehaviour
         return faces;
     }
 
-
+    public void GenerateSearchRewardFace()
+    {
+        Face face = createRandomFace();
+        face.transform.position = searchFaceRewardPt.position;
+        face.transform.rotation = searchFaceRewardPt.rotation;
+        face.SetHighlight(true);
+        searchRewardFace = face;
+    }
+    public void ClearSearchRewardFace()
+    {
+        if (!searchRewardFace.dice) { Destroy(searchRewardFace.gameObject); }
+        searchRewardFace = null;
+    }
+    public void AddSearchRewardFace()
+    {
+        if(searchRewardFace == null) { Debug.LogWarning("Tried to give the player a search reward when none exists"); return; }
+        AddGivenFace(searchRewardFace);
+    }
     public void moveTransformsTo_ZoomPoint(List<Transform> objects)
     {
         int count = objects.Count;
