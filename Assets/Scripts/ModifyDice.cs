@@ -73,7 +73,6 @@ public class ModifyDice : MonoBehaviour
         foreach (Dice dice in dicePoolManager.diceInPool)
         {
             dice.diceBody.GetComponent<Rigidbody>().isKinematic = false;
-            tra
         }
 
         Debug.Log(clickedSocket);
