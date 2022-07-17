@@ -124,7 +124,7 @@ public class DiceRoller : MonoBehaviour
     }
 
     public bool IsSettled() {
-        return diceState ==  DiceState.SETTLED;
+        return diceState == DiceState.SETTLED;
     }
 
     public bool IsJustSettled() {
