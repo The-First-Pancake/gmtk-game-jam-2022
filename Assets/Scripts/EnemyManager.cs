@@ -64,18 +64,26 @@ public class EnemyManager : MonoBehaviour
         } else if (Enemy != null && (Enemy.transform.position.x >= EnemySceneMarkerOut.transform.position.x)) {
             Destroy(Enemy);
             PlayerLost = false;
+            
             Light[] flareLights = Flare.GetComponentsInChildren<Light>();
             ParticleSystem[] flareParticles = Flare.GetComponentsInChildren<ParticleSystem>();
+            
             foreach (ParticleSystem flareParticle in flareParticles)
             {
                 flareParticle.Play();
             }
+
             foreach (Light flareLight in flareLights)
             {
                 flareLight.enabled = true;
             }
-            GameManager.instance.combatManager.EndSelect();
+
+            Invoke("EndEvade", 1f);
         }
+    }
+
+    private void EndEvade () {
+        GameManager.instance.combatManager.EndSelect();
     }
 
     public void PlayerEvade() {
@@ -89,7 +97,7 @@ public class EnemyManager : MonoBehaviour
         {
             flareLight.enabled = false;
         }
-        Invoke("PlayerLose", 2.5f);
+        Invoke("PlayerLose", 1.5f);
     }
 
     public void PlayerLose() {
@@ -100,6 +108,7 @@ public class EnemyManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(PlayerLost);
         if (PlayerLost){
             // EnemyRotateAway();
             EnemySlideOutView();
