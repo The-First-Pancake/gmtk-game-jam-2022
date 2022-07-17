@@ -51,6 +51,9 @@ MonoBehaviour:
     combat: 0
     evade: 0
     search: 0
+  OnCombatStart:
+    m_PersistentCalls:
+      m_Calls: []
   OnSearch:
     m_PersistentCalls:
       m_Calls: []
@@ -73,6 +76,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   OnPlayerHit:
+    m_PersistentCalls:
+      m_Calls: []
+  OnCombatEnd:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &1114624102
@@ -192,6 +198,7 @@ MonoBehaviour:
   EnemyPrefab: {fileID: 3209974283754741971, guid: 2080287c38b2f4405b7d1779ee04f269,
     type: 3}
   GameScene: {fileID: 0}
+  EnemySceneMarker: {fileID: 0}
   OnNewEnemy:
     m_PersistentCalls:
       m_Calls:
@@ -451,6 +458,9 @@ MonoBehaviour:
       search: 0
     enemyPrefab: {fileID: 0}
     hasDiceReward: 0
+  OnEncounterStart:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &6312651585133884112
 GameObject:
   m_ObjectHideFlags: 0
