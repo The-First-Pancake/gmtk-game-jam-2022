@@ -15,11 +15,11 @@ public class ModifyDice : MonoBehaviour
     void Start()
     {
         zoomPoint = Camera.main.transform.Find("DiceZoomPoint");
-        ChooseAFace();
+        ChooseFromFaces();
     }
 
 
-    public Pip choosePip()
+    public Pip chooseRandomPip()
     {
         float randomNumberCap = 0;
         foreach(Pip pip in GameManager.instance.pips)
@@ -41,7 +41,7 @@ public class ModifyDice : MonoBehaviour
     {
         return Random.Range(Mathf.FloorToInt(pip.abundance.x), Mathf.FloorToInt(pip.abundance.y));
     }
-    public void ChooseAFace()
+    public void ChooseFromFaces()
     {
         int choices = 3;
         List<Face> faceOptions = new List<Face>();
@@ -50,7 +50,7 @@ public class ModifyDice : MonoBehaviour
         {
             Face newFace = Instantiate(GameManager.instance.getFacePrefab_OfSize(6)).GetComponent<Face>();
 
-            Pip pip = choosePip();
+            Pip pip = chooseRandomPip();
             int quantity = choosePipQuantitiy(pip);
             for (int j = 0; j < quantity; j++)
             {

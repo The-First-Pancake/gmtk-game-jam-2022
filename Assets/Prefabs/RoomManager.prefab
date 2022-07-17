@@ -47,6 +47,10 @@ MonoBehaviour:
   state: 0
   numRerollsAllowed: 5
   numRollsLeft: 0
+  combatThresholds:
+    combat: 0
+    evade: 0
+    search: 0
 --- !u!1 &1114624102
 GameObject:
   m_ObjectHideFlags: 0
@@ -95,6 +99,7 @@ MonoBehaviour:
   camera: {fileID: 463297899209018949}
   player: {fileID: 0}
   combatManager: {fileID: 195682429}
+  diceHomePoint: {fileID: 0}
   pipPrefab: {fileID: 8770532661746544455, guid: 42dcb12a6e55fb54c957e25decbc1baa,
     type: 3}
   dicePrefabsBySize:
@@ -309,7 +314,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5048696138337153100}
   m_Layer: 0
-  m_Name: SelectionArea
+  m_Name: DiceZoomPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
