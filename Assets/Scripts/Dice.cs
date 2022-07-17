@@ -14,36 +14,25 @@ public class Dice : MonoBehaviour
     private Face highlightedFace = null;
     public void Start()
     {
-        
+        generateTestDie();
     }
     public void Update()
     {
 
         //Check highlights
-        if (diceBody.GetComponent<DiceRoller>().IsSettled())
+        if (diceBody.GetComponent<DiceRoller>().CheckSettled())
         { 
             Face upFace = getUpFace();
             if (upFace)
             {
-                Debug.Log("on"); //clear old face if there was one (there shouldn't be but just in case
-
                 highlightedFace = upFace;
                 upFace.SetHighlight(true);
             }
         }
         else if(highlightedFace)
         {
-            Debug.Log("off");
             highlightedFace.SetHighlight(false);
             highlightedFace = null;
-        }
-        
-        // Check player damage
-        if (diceBody.GetComponent<DiceRoller>().IsJustSettled()) {
-            Face upFace = getUpFace();
-            if (upFace && upFace.faceType == FaceType.isopod) {
-                GameManager.instance.player.Damage();
-            }
         }
     }
 
@@ -126,7 +115,15 @@ public class Dice : MonoBehaviour
         face.socket = socket;
         if (!faces.Contains(face)) { faces.Add(face); }
     }
-
+    public void sendHome()
+    {
+        diceBody.GetComponent<Rigidbody>().isKinematic = false;
+        diceBody.transform.position = GameManager.instance.diceHomePoint.position;
+        foreach(Face face in faces)
+        {
+            face.SetHighlight(false);
+        }
+    }
 }
 
 [Serializable]
