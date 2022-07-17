@@ -23,7 +23,6 @@ public class ModifyDice : MonoBehaviour
     void Start()
     {
         zoomPoint = Camera.main.transform.Find("DiceZoomPoint");
-        GenerateSearchRewardFace();
     }
 
    
@@ -86,6 +85,7 @@ public class ModifyDice : MonoBehaviour
 
     public void GenerateSearchRewardFace()
     {
+        Debug.Log("Generating die face");
         Face face = createRandomFace();
         face.transform.position = searchFaceRewardPt.position;
         face.transform.rotation = searchFaceRewardPt.rotation;
